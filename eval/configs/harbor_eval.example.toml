@@ -1,0 +1,31 @@
+[eval]
+name = "harbor-eval"
+model = "${SELF_HARNESS_MODEL}"
+repeats = 2
+
+# Path to the eval project that owns the pytest benchmark tests.
+evals_project = "../evals"
+
+# Path to the harness workspace importable by the benchmark.
+harness_workspace = "../harness_workspace"
+
+# Import path consumed by the benchmark's Harbor integration.
+agent_import_path = "self_harness_harbor.harbor_wrapper:AgentWrapper"
+
+model_flag = "--model"
+summary_flag = "--evals-report-file"
+pytest_args = ["-q"]
+case_concurrency = 1
+timeout_s = 43200
+
+[env]
+# Optional environment variables for Harbor, Docker, and model setup.
+#
+# To evaluate a materialized candidate, point this at the candidate root or its
+# current/ subdirectory:
+# SELF_HARNESS_CANDIDATE_WORKSPACE = "../../runs/candidate"
+
+[[cases]]
+case_id = "tests/evals/example/test_example.py::test_example[{model}]"
+split = "train"
+stratum = "example"
