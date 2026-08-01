@@ -164,6 +164,17 @@ def split_repeat_metrics(payload: dict[str, Any], *, split: str, expected_repeat
 def repeat_metric(raw: Any, *, split: str) -> RepeatMetric:
     if not isinstance(raw, dict):
         raise ValueError(f"split {split!r} repeat entry must be an object")
+    case_results = raw.get("case_results")
+    if isinstance(case_results, list):
+        invalid_cases = [
+            str(item.get("case_id") or "unknown")
+            for item in case_results
+            if isinstance(item, dict) and item.get("status") == "invalid"
+        ]
+        if invalid_cases:
+            raise ValueError(
+                f"split {split!r} contains invalid infrastructure trials: {', '.join(invalid_cases)}"
+            )
     try:
         repeat = int(raw["repeat"])
         passed = int(raw["passed"])

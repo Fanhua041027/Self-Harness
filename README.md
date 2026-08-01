@@ -32,6 +32,23 @@ Terminal-Bench-2.0 pass rates (%). More results are coming soon.
 | Qwen3.5-35B-A3B | 18.0 | 36.7 |
 | GLM-5 | 46.1 | 57.0 |
 
+## Reproduction
+
+This checkout includes an auditable reproduction of the Self-Harness mechanism.
+It covers weakness mining, bounded harness proposals, regression-gated
+validation, artifact freezing, and a sealed evaluation stage. It does not claim
+to reproduce the paper's Terminal-Bench 2.0 scores without the external
+benchmark assets and model endpoint.
+
+For setup instructions, experiment policy, and offline/online commands, see
+[README_REPRODUCTION.md](README_REPRODUCTION.md).
+
+```bash
+python -m pip install -e ".[dev]"
+self-harness-reproduce --offline-demo --output-dir runs/offline-demo
+pytest -q
+```
+
 ## Citation
 
 ```bibtex

@@ -1,0 +1,22 @@
+upstream:
+  repository: https://github.com/qzzqzzb/Self-Harness
+  commit: 2720dbb3f52283684f4b85a1065d642df1779dd8
+  tree: 06b167ef705b6cc0d43a34d6cdec430479fc1f7e
+  source_form: github-archive-without-git-metadata
+  license: unknown/no standalone license found
+classification:
+  paper-specified:
+    - same-model execution/diagnosis/proposal
+    - failure-clustered harness evolution
+    - Pareto no-regression acceptance
+  upstream-code:
+    - diagnosis
+    - proposer
+    - acceptance
+    - workflow
+    - eval
+  replication-added:
+    - model identity adapter and fingerprint gate
+    - read-only surface policy
+    - Evolution/Regression/Sealed isolation
+    - deterministic offline tests and schemas

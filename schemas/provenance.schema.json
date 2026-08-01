@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "self-harness/provenance/1.0",
+  "type": "object",
+  "required": ["schema_version", "upstream_commit", "upstream_tree", "model_fingerprint", "config_hash", "split_hash", "surface_hash", "policy_hash", "artifact_hash"],
+  "properties": {
+    "schema_version": {"const": "1.0"}, "upstream_commit": {"const": "2720dbb3f52283684f4b85a1065d642df1779dd8"},
+    "upstream_tree": {"const": "06b167ef705b6cc0d43a34d6cdec430479fc1f7e"},
+    "model_fingerprint": {"type": "string", "minLength": 64}, "config_hash": {"type": "string", "minLength": 64},
+    "split_hash": {"type": "string", "minLength": 64}, "surface_hash": {"type": "string", "minLength": 64},
+    "policy_hash": {"type": "string", "minLength": 64}, "artifact_hash": {"type": "string", "minLength": 64}
+  }
+}

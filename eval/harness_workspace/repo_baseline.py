@@ -4,6 +4,8 @@ from collections.abc import Callable, Sequence
 from typing import Any
 
 from deepagents import create_deep_agent
+from deepagents.middleware._utils import append_to_system_message
+from langchain.agents.middleware import AgentMiddleware
 
 
 def build_system_prompt() -> str:
@@ -123,18 +125,13 @@ def _has_image_input(messages: Sequence[Any]) -> bool:
     return False
 
 
-def _append_instruction(system_message: Any, instruction: str) -> str:
-    current = _message_text(system_message)
-    return f"{current}\n\n{instruction}" if current else instruction
-
-
 def _build_prompt_middleware(
     name: str,
     instruction_builder: Callable[[], str],
     *,
     predicate: Callable[[Sequence[Any]], bool] | None = None,
 ) -> Any | None:
-    class _PromptMiddleware:
+    class _PromptMiddleware(AgentMiddleware):
         def _modify_request(self, request: Any) -> Any:
             messages = list(getattr(request, "messages", ()) or ())
             if predicate is not None and not predicate(messages):
@@ -142,7 +139,7 @@ def _build_prompt_middleware(
             instruction = instruction_builder().strip()
             if not instruction:
                 return request
-            system_message = _append_instruction(request.system_message, instruction)
+            system_message = append_to_system_message(request.system_message, instruction)
             return request.override(system_message=system_message)
 
         def wrap_model_call(self, request: Any, handler: Callable[[Any], Any]) -> Any:

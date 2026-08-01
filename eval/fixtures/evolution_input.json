@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "classification": "replication-added-non-sealed-input",
+  "task_id": "artifact-recovery-evo",
+  "task": "Execute a small harness recovery scenario. Recover after a tool error, produce the required artifact, adapt before retrying, and verify the result. The baseline intentionally omits an explicit bounded-retry harness rule; diagnosis should infer the repeated missing mechanism and propose concrete harness text.",
+  "constraints": [
+    "Do not access Sealed data",
+    "Return a concise execution trace"
+  ]
+}

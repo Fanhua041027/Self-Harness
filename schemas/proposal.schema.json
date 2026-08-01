@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "self-harness/proposal/1.0",
+  "type": "object",
+  "required": ["schema_version", "proposal_id", "target_cluster", "target_failure_type", "component", "files", "surface", "expected_behavior", "preserved_behavior", "regression_risk", "edit_metrics"],
+  "properties": {
+    "schema_version": {"const": "1.0"}, "proposal_id": {"type": "string", "minLength": 1},
+    "target_cluster": {"type": "array", "minItems": 3, "maxItems": 3},
+    "component": {"type": "string"}, "files": {"type": "array", "minItems": 1, "maxItems": 1},
+    "surface": {"type": "string"}, "expected_behavior": {"type": "string"},
+    "preserved_behavior": {"type": "string"}, "regression_risk": {"type": "string"},
+    "edit_metrics": {"type": "object"}
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "mechanism-smoke-v1",
+  "tasks": [
+    {"id": "repeat-invalid-command-evo", "split": "evolution", "stratum": "command-recovery"},
+    {"id": "artifact-recovery-evo", "split": "evolution", "stratum": "artifact-recovery"},
+    {"id": "env-persistence-reg", "split": "regression", "stratum": "shell-state"},
+    {"id": "explore-to-implement-reg", "split": "regression", "stratum": "phase-switch"},
+    {"id": "preserve-existing-pass-sealed", "split": "sealed", "stratum": "passing-behavior"}
+  ]
+}

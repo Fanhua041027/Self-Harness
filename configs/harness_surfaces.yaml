@@ -1,0 +1,21 @@
+version: self-harness.surface-manifest.v1
+editable:
+  - category: system_instruction
+    file: eval/harness_workspace/repo_baseline.py
+    symbols: [build_system_prompt, build_bootstrap_instruction, build_execution_instruction]
+  - category: tool_configuration
+    file: eval/harness_workspace/repo_baseline.py
+    symbols: [build_tools, build_permissions, build_interrupt_on]
+  - category: verification_guidance
+    file: eval/harness_workspace/repo_baseline.py
+    symbols: [build_verification_instruction]
+  - category: error_recovery_runtime_control
+    file: eval/harness_workspace/repo_baseline.py
+    symbols: [build_failure_recovery_instruction, build_runtime_control_policy]
+readonly:
+  - configs/splits/mechanism_smoke.json
+  - configs/replication_defaults.json
+  - acceptance/scripts/run_acceptance_gate.py
+  - eval/scripts/run_harbor_eval.py
+  - harnesses/qwen_tb2_final/repo_baseline.py
+  - provenance.yaml

@@ -224,7 +224,7 @@ def build_stage_records(steps: list[NormalizedStep]) -> list[StageRecord]:
 
 def extract_task_description(payload: dict[str, Any]) -> str:
     for message in _extract_output_messages(payload):
-        if str(message.get("type", "")).lower() in {"human", "user"}:
+        if str(message.get("type", "")).lower() in {"human", "user", "humanmessage"}:
             return _message_text(message)
     return str(payload.get("task_description", "") or "")
 
@@ -482,11 +482,11 @@ def _is_failed_trace(payload: dict[str, Any]) -> bool:
 
 
 def _is_ai_message(message: dict[str, Any]) -> bool:
-    return str(message.get("type", "") or "").lower() in {"ai", "assistant"}
+    return str(message.get("type", "") or "").lower() in {"ai", "assistant", "aimessage"}
 
 
 def _is_tool_message(message: dict[str, Any]) -> bool:
-    return str(message.get("type", "") or "").lower() == "tool"
+    return str(message.get("type", "") or "").lower() in {"tool", "toolmessage"}
 
 
 def _tool_calls_from_message(message: dict[str, Any]) -> list[ToolCallRecord]:
@@ -523,7 +523,8 @@ def _message_text(message: dict[str, Any]) -> str:
         return content
     if isinstance(content, list):
         return "\n".join(str(item) for item in content)
-    return str(content or "")
+    text = message.get("text")
+    return text if isinstance(text, str) else str(content or "")
 
 
 def _json_object_response_llm(llm: Any) -> Any:
@@ -592,7 +593,12 @@ def _truncate(value: str, max_chars: int) -> str:
 
 @contextmanager
 def _timeout(timeout_s: float | None):
-    if not timeout_s or timeout_s <= 0 or threading.current_thread() is not threading.main_thread():
+    if (
+        not timeout_s
+        or timeout_s <= 0
+        or threading.current_thread() is not threading.main_thread()
+        or not hasattr(signal, "SIGALRM")
+    ):
         yield
         return
 

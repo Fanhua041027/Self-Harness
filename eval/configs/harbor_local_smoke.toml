@@ -1,0 +1,19 @@
+[eval]
+name = "tb2-local-smoke"
+runner = "harbor_cli"
+model = "${SELF_HARNESS_MODEL}"
+repeats = 1
+evals_project = "../.."
+harness_workspace = "../harness_workspace"
+task_root = "${SELF_HARNESS_TB2_ROOT}"
+agent_import_path = "self_harness_harbor.harbor_wrapper:FixedHarnessWrapper"
+environment = "docker"
+agent_kwargs = ["hard_timeout_sec=600"]
+case_concurrency = 1
+timeout_s = 900
+infrastructure_retries = 2
+
+[[cases]]
+case_id = "cancel-async-tasks"
+split = "train"
+stratum = "smoke"

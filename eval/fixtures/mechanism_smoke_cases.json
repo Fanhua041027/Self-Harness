@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "classification": "replication-added-non-sealed-fixture",
+  "cases": [
+    {
+      "id": "evolution-recover-after-tool-error",
+      "split": "evolution",
+      "required_terms": ["recover", "artifact", "retry", "adapt", "verify"]
+    },
+    {
+      "id": "evolution-stop-identical-retry",
+      "split": "evolution",
+      "required_terms": ["recover", "artifact", "retry", "adapt", "verify"]
+    },
+    {
+      "id": "regression-preserve-verification",
+      "split": "regression",
+      "required_terms": ["verify", "rollback"]
+    }
+  ]
+}

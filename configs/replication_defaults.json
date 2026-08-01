@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "classification": "replication-added-defaults-not-paper-parameters",
+  "model": "gpt-5.6-sol",
+  "proposal_count_k": 3,
+  "evolution_rounds_t": 2,
+  "repeats_per_state": 2,
+  "seeds": [20260727, 20260728],
+  "minimum_cluster_support": 2,
+  "minimum_distinct_tasks": 2,
+  "budgets": {"tool_calls": 80, "model_tokens": 32000, "wall_time_seconds": 900},
+  "edit_budget": {"files": 1, "surfaces": 1, "added_chars": 4000, "changed_lines": 80, "ast_nodes": 120, "prompt_token_delta": 800}
+}

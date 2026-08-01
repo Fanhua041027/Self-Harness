@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "self-harness/evidence-bundle/1.0",
+  "type": "object",
+  "required": ["schema_version", "cluster_signature", "chain", "provenance"],
+  "properties": {"schema_version": {"const": "1.0"}, "cluster_signature": {"type": "array", "minItems": 3, "maxItems": 3}, "chain": {"type": "object"}, "provenance": {"type": "object"}}
+}

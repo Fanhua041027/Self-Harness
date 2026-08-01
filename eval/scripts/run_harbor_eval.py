@@ -8,6 +8,7 @@ import json
 import os
 import re
 import shlex
+import shutil
 import subprocess
 import sys
 import time
@@ -18,6 +19,14 @@ from typing import Any
 
 ENV_PATTERN = re.compile(r"\$\{([^}]+)\}")
 DEFAULT_REPEATS = 2
+VERIFIER_INFRASTRUCTURE_MARKERS = (
+    "failed to fetch http://deb.debian.org",
+    "unable to locate package curl",
+    "curl: command not found",
+    "uvx: command not found",
+    "could not resolve host",
+    "temporary failure resolving",
+)
 
 
 @dataclass(frozen=True)
@@ -33,11 +42,16 @@ class Case:
 @dataclass(frozen=True)
 class Config:
     name: str
+    runner: str
     model: str
     repeats: int
     evals_project: Path
     harness_workspace: Path
+    task_root: Path | None
     agent_import_path: str
+    environment: str
+    agent_kwargs: tuple[str, ...]
+    infrastructure_retries: int
     model_flag: str
     summary_flag: str
     pytest_args: tuple[str, ...]
@@ -85,6 +99,7 @@ def main(argv: list[str] | None = None) -> int:
                     cases=cases,
                     repeat_index=repeat_index,
                     repeat_dir=repeat_dir,
+                    reuse_existing=args.reuse_existing,
                 )
             split_results.append(result)
 
@@ -145,13 +160,29 @@ def load_config(
     timeout_raw = eval_config.get("timeout_s")
     timeout_s = float(timeout_raw) if timeout_raw is not None else None
 
+    runner = str(eval_config.get("runner", "pytest"))
+    if runner not in {"pytest", "harbor_cli"}:
+        raise ValueError("[eval].runner must be 'pytest' or 'harbor_cli'")
+    task_root_raw = eval_config.get("task_root")
+    task_root = resolve_path(base_dir, str(task_root_raw)) if task_root_raw else None
+    if runner == "harbor_cli" and task_root is None:
+        raise ValueError("[eval].task_root is required for harbor_cli runner")
+    infrastructure_retries = int(eval_config.get("infrastructure_retries", 0) or 0)
+    if infrastructure_retries < 0:
+        raise ValueError("[eval].infrastructure_retries must be >= 0")
+
     return Config(
         name=str(eval_config.get("name", "harbor-eval")),
+        runner=runner,
         model=model,
         repeats=repeats,
-        evals_project=resolve_path(base_dir, str(eval_config["evals_project"])),
+        evals_project=resolve_path(base_dir, str(eval_config.get("evals_project", "."))),
         harness_workspace=resolve_path(base_dir, str(eval_config["harness_workspace"])),
+        task_root=task_root,
         agent_import_path=str(eval_config["agent_import_path"]),
+        environment=str(eval_config.get("environment", "docker")),
+        agent_kwargs=tuple(str(item) for item in eval_config.get("agent_kwargs", [])),
+        infrastructure_retries=infrastructure_retries,
         model_flag=str(eval_config.get("model_flag", "--model")),
         summary_flag=str(eval_config.get("summary_flag", "--evals-report-file")),
         pytest_args=tuple(str(item) for item in eval_config.get("pytest_args", ["-q"])),
@@ -185,11 +216,20 @@ def run_repeat(
     cases: tuple[Case, ...],
     repeat_index: int,
     repeat_dir: Path,
+    reuse_existing: bool = False,
 ) -> dict[str, Any]:
     repeat_dir.mkdir(parents=True, exist_ok=True)
     started_at = time.time()
     max_workers = min(config.case_concurrency, len(cases))
     outcomes = []
+    pending_cases = []
+    for index, case in enumerate(cases):
+        rendered = expand_env(case.render(model=config.model))
+        checkpoint = repeat_dir / "cases" / safe_slug(rendered) / "result.json"
+        if reuse_existing and checkpoint.exists():
+            outcomes.append(json.loads(checkpoint.read_text(encoding="utf-8")))
+        else:
+            pending_cases.append((index, case))
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [
             executor.submit(
@@ -201,10 +241,12 @@ def run_repeat(
                 case_index=index,
                 repeat_dir=repeat_dir,
             )
-            for index, case in enumerate(cases)
+            for index, case in pending_cases
         ]
         for future in concurrent.futures.as_completed(futures):
-            outcomes.append(future.result())
+            outcome = future.result()
+            outcomes.append(outcome)
+            write_json(Path(outcome["artifacts_dir"]) / "result.json", outcome)
     outcomes.sort(key=lambda item: item["index"])
     passed = sum(1 for outcome in outcomes if outcome["passed"])
     result = {
@@ -230,6 +272,16 @@ def run_case(
     case_index: int,
     repeat_dir: Path,
 ) -> dict[str, Any]:
+    if config.runner == "harbor_cli":
+        return run_harbor_case(
+            config=config,
+            case=case,
+            split=split,
+            repeat_index=repeat_index,
+            case_index=case_index,
+            repeat_dir=repeat_dir,
+        )
+
     rendered = expand_env(case.render(model=config.model))
     case_dir = repeat_dir / "cases" / safe_slug(rendered)
     case_dir.mkdir(parents=True, exist_ok=True)
@@ -261,6 +313,8 @@ def run_case(
             capture_output=True,
             check=False,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=config.timeout_s,
         )
         stdout = completed.stdout
@@ -270,8 +324,8 @@ def run_case(
         stdout = normalize_output(exc.stdout)
         stderr = normalize_output(exc.stderr) + f"\nTIMEOUT after {config.timeout_s}s\n"
         returncode = 124
-    (case_dir / "stdout.log").write_text(stdout)
-    (case_dir / "stderr.log").write_text(stderr)
+    (case_dir / "stdout.log").write_text(stdout, encoding="utf-8")
+    (case_dir / "stderr.log").write_text(stderr, encoding="utf-8")
 
     junit_status = parse_junit_status(junit_path) if junit_path.exists() else None
     summary_payload = read_json_if_exists(summary_path)
@@ -302,6 +356,253 @@ def run_case(
         outcome["messages_path"] = trace_metadata["messages_path"]
         outcome["trace_metadata"] = trace_metadata
     return outcome
+
+
+def run_harbor_case(
+    *,
+    config: Config,
+    case: Case,
+    split: str,
+    repeat_index: int,
+    case_index: int,
+    repeat_dir: Path,
+) -> dict[str, Any]:
+    if config.task_root is None:
+        raise ValueError("harbor_cli runner requires task_root")
+    rendered = expand_env(case.render(model=config.model))
+    task_name = rendered.replace("_", "-")
+    task_path = config.task_root / task_name
+    if not (task_path / "task.toml").is_file():
+        raise FileNotFoundError(f"Harbor task not found: {task_path}")
+
+    case_dir = repeat_dir / "cases" / safe_slug(rendered)
+    jobs_dir = case_dir / "harbor"
+    case_dir.mkdir(parents=True, exist_ok=True)
+    harbor_executable = shutil.which("harbor", path=str(Path(sys.executable).parent))
+    if harbor_executable is None:
+        raise RuntimeError(f"harbor executable not found beside {sys.executable}")
+    env = build_env(config=config, split=split, repeat_index=repeat_index)
+    env["PYTHONUTF8"] = "1"
+    started_at = time.time()
+    attempt_records = []
+    final = None
+    for attempt_index in range(1, config.infrastructure_retries + 2):
+        job_name = "trial" if attempt_index == 1 else f"retry-{attempt_index:02d}"
+        command = build_harbor_command(
+            harbor_executable=harbor_executable,
+            task_path=task_path,
+            config=config,
+            jobs_dir=jobs_dir,
+            job_name=job_name,
+        )
+        write_json(
+            case_dir / f"command-attempt-{attempt_index:02d}.json",
+            {
+                "argv": command,
+                "shell": shlex.join(command),
+                "cwd": str(config.evals_project),
+                "env_subset": {
+                    "PYTHONPATH": env.get("PYTHONPATH", ""),
+                    "SELF_HARNESS_AGENT_IMPORT_PATH": env.get("SELF_HARNESS_AGENT_IMPORT_PATH", ""),
+                    "SELF_HARNESS_EVAL_SPLIT": split,
+                    "SELF_HARNESS_EVAL_REPEAT": str(repeat_index),
+                },
+                "timeout_s": config.timeout_s,
+            },
+        )
+        attempt = run_harbor_attempt(
+            command=command,
+            cwd=config.evals_project,
+            env=env,
+            timeout_s=config.timeout_s,
+            job_root=jobs_dir / job_name,
+        )
+        (case_dir / f"stdout-attempt-{attempt_index:02d}.log").write_text(
+            attempt["stdout"], encoding="utf-8"
+        )
+        (case_dir / f"stderr-attempt-{attempt_index:02d}.log").write_text(
+            attempt["stderr"], encoding="utf-8"
+        )
+        attempt_records.append(
+            {
+                "attempt": attempt_index,
+                "job_name": job_name,
+                "returncode": attempt["returncode"],
+                "reward": attempt["reward"],
+                "infrastructure_error": attempt["infrastructure_error"],
+                "trial_result_path": attempt["trial_result_path"],
+            }
+        )
+        final = attempt
+        if attempt["infrastructure_error"] is None:
+            break
+
+    if final is None:
+        raise RuntimeError("Harbor attempt loop did not run")
+    write_json(case_dir / "attempts.json", {"attempts": attempt_records})
+    stdout = final["stdout"]
+    stderr = final["stderr"]
+    returncode = final["returncode"]
+    (case_dir / "stdout.log").write_text(stdout, encoding="utf-8")
+    (case_dir / "stderr.log").write_text(stderr, encoding="utf-8")
+    reward = final["reward"]
+    exception_info = final["exception_info"]
+    trace_metadata = final["trace_metadata"]
+    infrastructure_error = final["infrastructure_error"]
+    passed = returncode == 0 and exception_info is None and isinstance(reward, (int, float)) and reward > 0
+    failure_message = None
+    if not passed:
+        failure_message = (
+            f"Verifier infrastructure error: {infrastructure_error}"
+            if infrastructure_error
+            else json.dumps(exception_info, sort_keys=True)
+            if exception_info
+            else f"Harbor reward={reward!r}, returncode={returncode}"
+        )
+    outcome = {
+        "index": case_index,
+        "case_id": rendered,
+        "split": split,
+        "stratum": case.stratum,
+        "repeat": repeat_index,
+        "passed": passed,
+        "status": "passed" if passed else "invalid" if infrastructure_error else "failed",
+        "returncode": returncode,
+        "reward": reward,
+        "attempt_count": len(attempt_records),
+        "infrastructure_error": infrastructure_error,
+        "duration_s": round(time.time() - started_at, 3),
+        "artifacts_dir": str(case_dir),
+        "failure_message": failure_message,
+    }
+    if trace_metadata:
+        outcome["messages_path"] = trace_metadata["messages_path"]
+        outcome["trace_metadata"] = trace_metadata
+    return outcome
+
+
+def build_harbor_command(
+    *,
+    harbor_executable: str,
+    task_path: Path,
+    config: Config,
+    jobs_dir: Path,
+    job_name: str,
+) -> list[str]:
+    command = [
+        harbor_executable,
+        "run",
+        "--path",
+        str(task_path),
+        "--agent",
+        config.agent_import_path,
+        "--model",
+        config.model,
+        "--env",
+        config.environment,
+        "--n-concurrent",
+        "1",
+        "--n-attempts",
+        "1",
+        "--job-name",
+        job_name,
+        "--jobs-dir",
+        str(jobs_dir),
+        "--yes",
+        "--quiet",
+    ]
+    for item in config.agent_kwargs:
+        command.extend(["--agent-kwarg", item])
+    return command
+
+
+def run_harbor_attempt(
+    *,
+    command: list[str],
+    cwd: Path,
+    env: dict[str, str],
+    timeout_s: float | None,
+    job_root: Path,
+) -> dict[str, Any]:
+    try:
+        completed = subprocess.run(
+            command,
+            cwd=cwd,
+            env=env,
+            capture_output=True,
+            check=False,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=timeout_s,
+        )
+        stdout = completed.stdout
+        stderr = completed.stderr
+        returncode = completed.returncode
+    except subprocess.TimeoutExpired as exc:
+        stdout = normalize_output(exc.stdout)
+        stderr = normalize_output(exc.stderr) + f"\nTIMEOUT after {timeout_s}s\n"
+        returncode = 124
+
+    trial_paths = sorted(job_root.glob("*/result.json")) if job_root.exists() else []
+    trial_result_path = trial_paths[0] if len(trial_paths) == 1 else None
+    trial_result = read_json_if_exists(trial_result_path) if trial_result_path is not None else None
+    reward = None
+    exception_info = None
+    trace_metadata = None
+    if isinstance(trial_result, dict):
+        verifier_result = trial_result.get("verifier_result")
+        if isinstance(verifier_result, dict):
+            rewards = verifier_result.get("rewards")
+            if isinstance(rewards, dict):
+                reward = rewards.get("reward")
+        exception_info = trial_result.get("exception_info")
+        trace_metadata = normalize_trace_metadata(trial_result)
+    infrastructure_error = detect_verifier_infrastructure_error(
+        trial_result_path=trial_result_path,
+        reward=reward,
+        exception_info=exception_info,
+    )
+    return {
+        "stdout": stdout,
+        "stderr": stderr,
+        "returncode": returncode,
+        "reward": reward,
+        "exception_info": exception_info,
+        "trace_metadata": trace_metadata,
+        "infrastructure_error": infrastructure_error,
+        "trial_result_path": str(trial_result_path) if trial_result_path is not None else None,
+    }
+
+
+def detect_verifier_infrastructure_error(
+    *,
+    trial_result_path: Path | None,
+    reward: Any,
+    exception_info: Any = None,
+) -> str | None:
+    if trial_result_path is None or reward != 0:
+        return None
+    if isinstance(exception_info, dict) and exception_info.get("exception_type") == "AgentTimeoutError":
+        message = str(exception_info.get("exception_message") or "agent execution timed out")
+        return f"agent timeout: {message}"
+    invoke_state = read_json_if_exists(trial_result_path.parent / "agent" / "invoke_state.json")
+    if isinstance(invoke_state, dict) and invoke_state.get("phase") == "ainvoke_timeout":
+        timeout = invoke_state.get("invoke_timeout_sec")
+        return f"agent invoke timeout after {timeout} seconds"
+    verifier_dir = trial_result_path.parent / "verifier"
+    if not verifier_dir.exists():
+        return None
+    output = "\n".join(
+        path.read_text(encoding="utf-8", errors="replace")
+        for path in sorted(verifier_dir.glob("test-*.txt"))
+    ).lower()
+    if "test session starts" in output or re.search(r"\bcollected\s+\d+\s+items?\b", output):
+        return None
+    for marker in VERIFIER_INFRASTRUCTURE_MARKERS:
+        if marker in output:
+            return marker
+    return None
 
 
 def build_pytest_command(config: Config, *, rendered_case: str, summary_path: Path, junit_path: Path) -> list[str]:
@@ -356,7 +657,7 @@ def read_json_if_exists(path: Path) -> Any:
     if not path.exists():
         return None
     try:
-        return json.loads(path.read_text())
+        return json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError:
         return None
 
@@ -485,11 +786,16 @@ def aggregate_results(*, config: Config, split_results: list[dict[str, Any]]) ->
 def config_to_json(config: Config) -> dict[str, Any]:
     return {
         "name": config.name,
+        "runner": config.runner,
         "model": config.model,
         "repeats": config.repeats,
         "evals_project": str(config.evals_project),
         "harness_workspace": str(config.harness_workspace),
+        "task_root": str(config.task_root) if config.task_root is not None else None,
         "agent_import_path": config.agent_import_path,
+        "environment": config.environment,
+        "agent_kwargs": list(config.agent_kwargs),
+        "infrastructure_retries": config.infrastructure_retries,
         "model_flag": config.model_flag,
         "summary_flag": config.summary_flag,
         "pytest_args": list(config.pytest_args),
@@ -531,7 +837,7 @@ def normalize_output(value: str | bytes | None) -> str:
 
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

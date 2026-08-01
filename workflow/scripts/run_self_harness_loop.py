@@ -11,7 +11,9 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
+
+from self_harness_workflow.policy import validate_candidate_edit
 
 ROOT = Path(__file__).resolve().parents[2]
 QUEUE_FORMAT = "self_harness.candidate_queue.v0"
@@ -103,6 +105,7 @@ def main(argv: list[str] | None = None) -> int:
         requested=args.diagnosis,
         command_template=args.diagnosis_command,
         branch_paths=branch_paths,
+        baseline_result=Path(str(active_branch["baseline_result"])).expanduser().resolve(),
         reuse_existing=args.reuse_existing,
     )
     run_build_proposer_prompt(
@@ -279,6 +282,7 @@ def resolve_diagnosis(
     requested: Path | None,
     command_template: str | None,
     branch_paths: BranchPaths,
+    baseline_result: Path,
     reuse_existing: bool,
 ) -> Path:
     diagnosis = requested.expanduser().resolve() if requested is not None else branch_paths.diagnosis
@@ -295,6 +299,7 @@ def resolve_diagnosis(
             "work_dir": branch_paths.work_dir,
             "branch_dir": branch_paths.branch_dir,
             "branch_id": branch_paths.branch_id,
+            "baseline_result": baseline_result,
         },
     )
     if not diagnosis.exists():
@@ -462,6 +467,7 @@ def process_pending_candidates(
             output_dir=candidate_dir,
             reuse_existing=reuse_existing,
         )
+        validate_materialized_candidate(candidate_dir=candidate_dir, parent_surfaces=item["parent_eval_surfaces"])
         run_candidate_eval(
             eval_config=eval_config,
             output_dir=eval_dir,
@@ -1072,6 +1078,30 @@ def materialize_candidate(
     run_command(argv)
 
 
+def validate_materialized_candidate(*, candidate_dir: Path, parent_surfaces: Mapping[str, Any]) -> dict[str, Any]:
+    manifest = read_json(candidate_dir / "manifest.json")
+    files = manifest.get("surface_files")
+    if not isinstance(files, dict) or len(files) != 1:
+        raise ValueError("candidate must materialize exactly one declared surface")
+    changed = manifest.get("changed_surfaces")
+    if not isinstance(changed, list) or len(changed) != 1:
+        raise ValueError("candidate must change exactly one declared surface")
+    surface = str(changed[0])
+    if surface not in parent_surfaces:
+        raise ValueError(f"candidate changed undeclared surface: {surface}")
+    current = candidate_dir / str(files[surface])
+    parent = Path(str(parent_surfaces[surface])).resolve()
+    if not current.is_file() or not parent.is_file():
+        raise ValueError("candidate surface files must be regular files")
+    metrics = validate_candidate_edit(
+        before=parent.read_text(encoding="utf-8"),
+        after=current.read_text(encoding="utf-8"),
+        changed_files=1,
+        changed_surfaces=1,
+    )
+    return metrics
+
+
 def run_candidate_eval(
     *,
     eval_config: Path,
@@ -1082,15 +1112,17 @@ def run_candidate_eval(
 ) -> None:
     if reuse_existing and (output_dir / "result.json").exists():
         return
+    argv = [
+        sys.executable,
+        str(ROOT / "eval" / "scripts" / "run_harbor_eval.py"),
+        "--config",
+        str(eval_config),
+        "--output-dir",
+        str(output_dir),
+        "--reuse-existing",
+    ]
     run_command(
-        [
-            sys.executable,
-            str(ROOT / "eval" / "scripts" / "run_harbor_eval.py"),
-            "--config",
-            str(eval_config),
-            "--output-dir",
-            str(output_dir),
-        ],
+        argv,
         extra_env={candidate_env_var: str(candidate_dir)},
     )
 

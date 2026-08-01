@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "self-harness/failure-record/1.0",
+  "type": "object",
+  "required": ["schema_version", "x", "repeat", "split", "trace", "output", "verdict", "signature"],
+  "properties": {
+    "schema_version": {"const": "1.0"}, "x": {"type": "string", "minLength": 1},
+    "repeat": {"type": "integer", "minimum": 1}, "split": {"const": "evolution"},
+    "trace": {"type": "object"}, "verdict": {"type": "object"},
+    "signature": {"type": "object", "required": ["terminal_verifier_cause", "causal_agent_behavior", "abstract_mechanism"]}
+  }
+}
