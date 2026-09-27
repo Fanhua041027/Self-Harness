@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -49,7 +50,10 @@ def build_verifier_causal_clusters(
             continue
         diagnosis = load_diagnosis(outcome)
         if not isinstance(diagnosis, dict):
-            raise RuntimeError(f"missing diagnosis for failed case: {outcome.case_id}")
+            # Case was skipped (e.g. empty trace or infrastructure timeout). Exclude it from
+            # the failure-mining clusters instead of aborting the whole diagnosis pass.
+            print(f"WARNING: no diagnosis for {outcome.case_id}; excluded from clusters", file=sys.stderr)
+            continue
         signature = _verifier_causal_signature(outcome=outcome, diagnosis=diagnosis)
         records.append({"outcome": outcome, "diagnosis": diagnosis, "signature": signature})
     grouped: dict[VerifierCausalSignature, list[dict[str, Any]]] = defaultdict(list)

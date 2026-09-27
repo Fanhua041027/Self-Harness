@@ -37,8 +37,30 @@ function Assert-ValidBaseline {
             Where-Object { $_.status -eq "invalid" }
     )
     if ($invalid.Count -gt 0) {
-        throw "baseline contains $($invalid.Count) invalid infrastructure trial(s): $Path"
+        Write-Warning "baseline contains $($invalid.Count) invalid infrastructure trial(s); excluded from failure mining: $Path"
     }
+}
+
+function Get-CompletedRound {
+    param([string]$ProgressPath)
+    if (-not (Test-Path -LiteralPath $ProgressPath)) { return 0 }
+    $progress = Get-Content -LiteralPath $ProgressPath -Raw -Encoding utf8 | ConvertFrom-Json
+    $completedRound = [int]$progress.completed_round
+    if ($completedRound -lt 0 -or $completedRound -gt 2) {
+        throw "invalid completed_round in $ProgressPath"
+    }
+    return $completedRound
+}
+
+function Write-RoundProgress {
+    param([string]$ProgressPath, [string]$Label, [int]$CompletedRound)
+    $temporaryPath = "$ProgressPath.tmp"
+    @{
+        label = $Label
+        completed_round = $CompletedRound
+        updated_at = (Get-Date).ToString("o")
+    } | ConvertTo-Json | Set-Content -LiteralPath $temporaryPath -Encoding utf8
+    Move-Item -LiteralPath $temporaryPath -Destination $ProgressPath -Force
 }
 
 function Invoke-ModelEvolution {
@@ -63,12 +85,18 @@ function Invoke-ModelEvolution {
     $env:PYTHONUTF8 = "1"
     Remove-Item Env:SELF_HARNESS_CANDIDATE_WORKSPACE -ErrorAction SilentlyContinue
 
-    $diagnosisCommand = ('"{0}" "{1}" --result "{{baseline_result}}" --model "{2}" --output "{{diagnosis}}"' -f $python, $diagnosisScript, $ApiModel)
+    $diagnosisCommand = ('"{0}" "{1}" --result "{{baseline_result}}" --model "{2}" --output "{{diagnosis}}" --timeout-s 600' -f $python, $diagnosisScript, $ApiModel)
     $proposerCommand = ('"{0}" "{1}" --prompt "{{prompt}}" --output "{{response}}" --model "{2}"' -f $python, $proposerScript, $ApiModel)
     $logPath = Join-Path $root "runs\$WorkName.log"
+    $progressPath = Join-Path $workDir "round-progress.json"
+    $completedRound = Get-CompletedRound -ProgressPath $progressPath
 
-    for ($round = 1; $round -le 2; $round++) {
+    for ($round = $completedRound + 1; $round -le 2; $round++) {
         Write-PipelineStatus -Stage "$Label-round-$round" -State "running" -Message "K=3 candidate round is running"
+        # Redirect stderr to a file instead of piping it through PowerShell (2>&1 | Tee-Object),
+        # which with $ErrorActionPreference="Stop" treats subprocess stderr lines (e.g. acceptance
+        # gate WARNINGs) as terminating NativeCommandErrors and aborts the whole pipeline.
+        $stderrPath = "$logPath.stderr"
         & $python $loopScript `
             --eval-config $evalConfig `
             --work-dir $workDir `
@@ -76,8 +104,10 @@ function Invoke-ModelEvolution {
             --route-count 3 `
             --diagnosis-command $diagnosisCommand `
             --proposer-command $proposerCommand `
-            --max-candidates 0 2>&1 | Tee-Object -FilePath $logPath -Append
+            --reuse-existing `
+            --max-candidates 0 1>> $logPath 2>> $stderrPath
         if ($LASTEXITCODE -ne 0) { throw "$Label round $round failed with exit code $LASTEXITCODE" }
+        Write-RoundProgress -ProgressPath $progressPath -Label $Label -CompletedRound $round
     }
 }
 

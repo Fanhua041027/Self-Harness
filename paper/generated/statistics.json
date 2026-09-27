@@ -1,0 +1,339 @@
+{
+  "analysis_version": "1.1",
+  "statistical_design": {
+    "comparison_unit": "task",
+    "observation_unit": "attempt",
+    "split_task_counts": {
+      "train": 43,
+      "heldout": 21
+    },
+    "repeat_ids": [
+      1,
+      2
+    ],
+    "attempts_per_task": 2,
+    "bootstrap": {
+      "unit": "task",
+      "resamples": 20000,
+      "seed": 20260812,
+      "seed_derivation": "ANALYSIS_SEED + model_index * 10 + split_index",
+      "percentile_method": "linear interpolation on sorted samples, q*(n-1) (Hyndman-Fan type 7)"
+    },
+    "permutation": {
+      "unit": "task",
+      "sidedness": "two-sided",
+      "exact": true,
+      "aggregation": "mean signed pass difference across attempts within task",
+      "algorithm": "dynamic programming over rational task effects"
+    }
+  },
+  "bootstrap_samples": 20000,
+  "bootstrap_unit": "task",
+  "bootstrap_percentile_method": "linear interpolation on sorted samples, q*(n-1) (Hyndman-Fan type 7)",
+  "permutation_method": "two-sided exact task-level sign permutation via dynamic programming",
+  "seed": 20260812,
+  "validity_policy": {
+    "fixed_denominator_invalid_counted_as_failure": true,
+    "confirmatory_inference_requires_zero_invalid_on_both_sides": true,
+    "common_valid_sensitivity_is_descriptive_only": true,
+    "historical_missing_reward_field_compatibility": true,
+    "strict_paths_require_reward_field": true,
+    "confirmatory_fields_null_when_inference_blocked": true,
+    "passed_requires_json_boolean": true,
+    "finite_reward_required_when_reward_field_present": true
+  },
+  "analysis_input_integrity": {
+    "stable_before_after_analysis": true,
+    "tracked_input_count": 21
+  },
+  "source_files": [
+    {
+      "path": "acceptance/scripts/run_acceptance_gate.py",
+      "sha256": "85005a2f1d74641770f92fa95470e99ea59212997f5901f1e3f5adb01c3d2f07"
+    },
+    {
+      "path": "eval/scripts/result_validity.py",
+      "sha256": "6eaf1a6de1d61117e4182ea79f8c707a7582793487250e4c9365862921c8006f"
+    },
+    {
+      "path": "paper/analyze_experiments.py",
+      "sha256": "219f6b14ccc9a2a958c831d877922bb2758fb8b4e5bea3d4c5d20e7141e48f29"
+    },
+    {
+      "path": "runs/clean64-deepseek-baseline/result.json",
+      "sha256": "b2ff721cd56a361b5212d3bf6f7e5e34a0a9c3e2cdc620c22f01496e62ca41cc"
+    },
+    {
+      "path": "runs/clean64-deepseek-self-harness/baseline_eval/result.json",
+      "sha256": "b2ff721cd56a361b5212d3bf6f7e5e34a0a9c3e2cdc620c22f01496e62ca41cc"
+    },
+    {
+      "path": "runs/clean64-deepseek-self-harness/branches/baseline/candidates/git_proxy_url_rewrite/acceptance.json",
+      "sha256": "e00678bafa6f1a85cce89d566dc0b48d10bd22bc355d292214e9a5cb1cd283f8"
+    },
+    {
+      "path": "runs/clean64-deepseek-self-harness/branches/baseline/candidates/git_proxy_url_rewrite/eval/result.json",
+      "sha256": "8eb348ae7c6d0c06bac4d2a4f6cfbdd7e4d2f3b2310c6b96d9c310dc0047e08d"
+    },
+    {
+      "path": "runs/clean64-deepseek-self-harness/branches/baseline/candidates/missing_runtime_install/acceptance.json",
+      "sha256": "bfb15754b709582fb2316852a5cc6e2f68e0d6159b25b3c0ff15b0c73eda16ff"
+    },
+    {
+      "path": "runs/clean64-deepseek-self-harness/branches/baseline/candidates/missing_runtime_install/eval/result.json",
+      "sha256": "a37d5655b9c1726db5a6529dc6648a11bb33a8f1007deb49b44833cee3b29b02"
+    },
+    {
+      "path": "runs/clean64-deepseek-self-harness/branches/baseline/candidates/required_output_file_exists/acceptance.json",
+      "sha256": "dd2949ea358aaf736030f9e983f4af2e0cdaffec4951045de4569ef42f85e699"
+    },
+    {
+      "path": "runs/clean64-deepseek-self-harness/branches/baseline/candidates/required_output_file_exists/eval/result.json",
+      "sha256": "e511ef76b6ed8e57144306158ec4724488b9108d6222d32503b70187e54031de"
+    },
+    {
+      "path": "runs/clean64-deepseek-self-harness/candidate_queue.json",
+      "sha256": "c98004328618d24ace2ae84a0591c9229cc539bfcbcc82a4972ab5268be65720"
+    },
+    {
+      "path": "runs/clean64-qwen-baseline/result.json",
+      "sha256": "bdbcdf0ac465281878eed804320476f1c57184b37195dbd5989c425e002e68a0"
+    },
+    {
+      "path": "runs/clean64-qwen-self-harness/baseline_eval/result.json",
+      "sha256": "bdbcdf0ac465281878eed804320476f1c57184b37195dbd5989c425e002e68a0"
+    },
+    {
+      "path": "runs/clean64-qwen-self-harness/branches/baseline/candidates/anti_workaround_execution/acceptance.json",
+      "sha256": "4d02eadafa7ea652f308da8c2259b7bd1d651d186fde7e7cac9eebafe3e4ae3b"
+    },
+    {
+      "path": "runs/clean64-qwen-self-harness/branches/baseline/candidates/anti_workaround_execution/eval/result.json",
+      "sha256": "ae6c20c2a6a386e0da569c130bd01b9df4cda090cce4ed5320b28a4abb1c4cbb"
+    },
+    {
+      "path": "runs/clean64-qwen-self-harness/branches/baseline/candidates/dangerous_config_interrupt/acceptance.json",
+      "sha256": "d275f22a240454d119306434c84bb39ac5994fd1452f784ab8f77ad10a7d225c"
+    },
+    {
+      "path": "runs/clean64-qwen-self-harness/branches/baseline/candidates/dangerous_config_interrupt/eval/result.json",
+      "sha256": "a40854aa7e96abae4ffbdd37b98425a3679a2501dd2c90d302e0a515af927f36"
+    },
+    {
+      "path": "runs/clean64-qwen-self-harness/branches/baseline/candidates/validation_bypass_verification/acceptance.json",
+      "sha256": "06a8fc8948d08b40e8f05ed4ae996003f779ae6a688bbddf01ba253066492617"
+    },
+    {
+      "path": "runs/clean64-qwen-self-harness/branches/baseline/candidates/validation_bypass_verification/eval/result.json",
+      "sha256": "7ae4a1d9d2c56392484accb617ba08a3a49b677593cd37475a87b5969faf8c92"
+    },
+    {
+      "path": "runs/clean64-qwen-self-harness/candidate_queue.json",
+      "sha256": "acf8bc6c93bea7a4b0836f83e730a48e8c7ed48cf9b3b5e09a0a0c4b4342ed06"
+    }
+  ],
+  "summary": [
+    {
+      "model": "DeepSeek V4 Flash",
+      "active_branch": "baseline",
+      "bootstrap_seed": 20260812,
+      "split": "train",
+      "attempts": 86,
+      "tasks": 43,
+      "baseline_passed": 11,
+      "final_passed": 11,
+      "baseline_rate": 0.12790697674418605,
+      "final_rate": 0.12790697674418605,
+      "delta": 0.0,
+      "baseline_invalid": 45,
+      "final_invalid": 45,
+      "inference_valid": false,
+      "inference_blocked_reason": "confirmatory inference withheld because baseline or final contains unresolved infrastructure-invalid cells",
+      "improved_pairs": 0,
+      "regressed_pairs": 0,
+      "mcnemar_exact_p": null,
+      "task_permutation_p": null,
+      "cluster_bootstrap_ci_low": null,
+      "cluster_bootstrap_ci_high": null,
+      "common_valid_attempts": 41,
+      "common_valid_baseline_passed": 11,
+      "common_valid_final_passed": 11,
+      "common_valid_baseline_rate": 0.2682926829268293,
+      "common_valid_final_rate": 0.2682926829268293,
+      "common_valid_delta": 0.0
+    },
+    {
+      "model": "DeepSeek V4 Flash",
+      "active_branch": "baseline",
+      "bootstrap_seed": 20260813,
+      "split": "heldout",
+      "attempts": 42,
+      "tasks": 21,
+      "baseline_passed": 27,
+      "final_passed": 27,
+      "baseline_rate": 0.6428571428571429,
+      "final_rate": 0.6428571428571429,
+      "delta": 0.0,
+      "baseline_invalid": 6,
+      "final_invalid": 6,
+      "inference_valid": false,
+      "inference_blocked_reason": "confirmatory inference withheld because baseline or final contains unresolved infrastructure-invalid cells",
+      "improved_pairs": 0,
+      "regressed_pairs": 0,
+      "mcnemar_exact_p": null,
+      "task_permutation_p": null,
+      "cluster_bootstrap_ci_low": null,
+      "cluster_bootstrap_ci_high": null,
+      "common_valid_attempts": 36,
+      "common_valid_baseline_passed": 27,
+      "common_valid_final_passed": 27,
+      "common_valid_baseline_rate": 0.75,
+      "common_valid_final_rate": 0.75,
+      "common_valid_delta": 0.0
+    },
+    {
+      "model": "Qwen3.7 Plus",
+      "active_branch": "baseline+anti_workaround_execution",
+      "bootstrap_seed": 20260822,
+      "split": "train",
+      "attempts": 86,
+      "tasks": 43,
+      "baseline_passed": 1,
+      "final_passed": 11,
+      "baseline_rate": 0.011627906976744186,
+      "final_rate": 0.12790697674418605,
+      "delta": 0.11627906976744186,
+      "baseline_invalid": 84,
+      "final_invalid": 64,
+      "inference_valid": false,
+      "inference_blocked_reason": "confirmatory inference withheld because baseline or final contains unresolved infrastructure-invalid cells",
+      "improved_pairs": 11,
+      "regressed_pairs": 1,
+      "mcnemar_exact_p": null,
+      "task_permutation_p": null,
+      "cluster_bootstrap_ci_low": null,
+      "cluster_bootstrap_ci_high": null,
+      "common_valid_attempts": 0,
+      "common_valid_baseline_passed": 0,
+      "common_valid_final_passed": 0,
+      "common_valid_baseline_rate": null,
+      "common_valid_final_rate": null,
+      "common_valid_delta": null
+    },
+    {
+      "model": "Qwen3.7 Plus",
+      "active_branch": "baseline+anti_workaround_execution",
+      "bootstrap_seed": 20260823,
+      "split": "heldout",
+      "attempts": 42,
+      "tasks": 21,
+      "baseline_passed": 14,
+      "final_passed": 24,
+      "baseline_rate": 0.3333333333333333,
+      "final_rate": 0.5714285714285714,
+      "delta": 0.23809523809523808,
+      "baseline_invalid": 21,
+      "final_invalid": 14,
+      "inference_valid": false,
+      "inference_blocked_reason": "confirmatory inference withheld because baseline or final contains unresolved infrastructure-invalid cells",
+      "improved_pairs": 11,
+      "regressed_pairs": 1,
+      "mcnemar_exact_p": null,
+      "task_permutation_p": null,
+      "cluster_bootstrap_ci_low": null,
+      "cluster_bootstrap_ci_high": null,
+      "common_valid_attempts": 18,
+      "common_valid_baseline_passed": 13,
+      "common_valid_final_passed": 16,
+      "common_valid_baseline_rate": 0.7222222222222222,
+      "common_valid_final_rate": 0.8888888888888888,
+      "common_valid_delta": 0.16666666666666666
+    }
+  ],
+  "candidates": [
+    {
+      "model": "DeepSeek V4 Flash",
+      "candidate_id": "git_proxy_url_rewrite",
+      "mechanism_family": "prompt_instruction",
+      "decision": "rejected",
+      "decision_source": "historical",
+      "acceptance_path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-deepseek-self-harness\\branches\\baseline\\candidates\\git_proxy_url_rewrite\\acceptance.json",
+      "train_delta": 0.034883720930232565,
+      "heldout_delta": -0.023809523809523725,
+      "reason": "rejected: dropped heldout",
+      "baseline_invalid": 51,
+      "candidate_invalid": 72,
+      "strict_gate_reproducible": false
+    },
+    {
+      "model": "DeepSeek V4 Flash",
+      "candidate_id": "required_output_file_exists",
+      "mechanism_family": "prompt_instruction",
+      "decision": "rejected",
+      "decision_source": "historical",
+      "acceptance_path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-deepseek-self-harness\\branches\\baseline\\candidates\\required_output_file_exists\\acceptance.json",
+      "train_delta": -0.12790697674418605,
+      "heldout_delta": -0.6428571428571428,
+      "reason": "rejected: dropped train, heldout",
+      "baseline_invalid": 51,
+      "candidate_invalid": 128,
+      "strict_gate_reproducible": false
+    },
+    {
+      "model": "DeepSeek V4 Flash",
+      "candidate_id": "missing_runtime_install",
+      "mechanism_family": "prompt_instruction",
+      "decision": "rejected",
+      "decision_source": "historical",
+      "acceptance_path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-deepseek-self-harness\\branches\\baseline\\candidates\\missing_runtime_install\\acceptance.json",
+      "train_delta": -0.12790697674418605,
+      "heldout_delta": -0.6428571428571428,
+      "reason": "rejected: dropped train, heldout",
+      "baseline_invalid": 51,
+      "candidate_invalid": 128,
+      "strict_gate_reproducible": false
+    },
+    {
+      "model": "Qwen3.7 Plus",
+      "candidate_id": "anti_workaround_execution",
+      "mechanism_family": "prompt_instruction",
+      "decision": "accepted",
+      "decision_source": "historical",
+      "acceptance_path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-self-harness\\branches\\baseline\\candidates\\anti_workaround_execution\\acceptance.json",
+      "train_delta": 0.11627906976744187,
+      "heldout_delta": 0.23809523809523803,
+      "reason": "accepted: improved train, heldout with no split drops",
+      "baseline_invalid": 105,
+      "candidate_invalid": 78,
+      "strict_gate_reproducible": false
+    },
+    {
+      "model": "Qwen3.7 Plus",
+      "candidate_id": "validation_bypass_verification",
+      "mechanism_family": "prompt_instruction",
+      "decision": "rejected",
+      "decision_source": "historical",
+      "acceptance_path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-self-harness\\branches\\baseline\\candidates\\validation_bypass_verification\\acceptance.json",
+      "train_delta": -0.011627906976744186,
+      "heldout_delta": -0.33333333333333337,
+      "reason": "rejected: dropped train, heldout",
+      "baseline_invalid": 105,
+      "candidate_invalid": 128,
+      "strict_gate_reproducible": false
+    },
+    {
+      "model": "Qwen3.7 Plus",
+      "candidate_id": "dangerous_config_interrupt",
+      "mechanism_family": "permission_interrupt",
+      "decision": "rejected",
+      "decision_source": "historical",
+      "acceptance_path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-self-harness\\branches\\baseline\\candidates\\dangerous_config_interrupt\\acceptance.json",
+      "train_delta": -0.011627906976744186,
+      "heldout_delta": -0.33333333333333337,
+      "reason": "rejected: dropped train, heldout",
+      "baseline_invalid": 105,
+      "candidate_invalid": 128,
+      "strict_gate_reproducible": false
+    }
+  ]
+}

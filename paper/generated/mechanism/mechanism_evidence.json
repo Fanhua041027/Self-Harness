@@ -1,0 +1,1331 @@
+{
+  "format": "self_harness.mechanism_evidence_audit.v1",
+  "candidate_id": "anti_workaround_execution",
+  "selected_cluster_id": "disabled_local_recipient_maps / root_cause / workaround_instead_of_fix",
+  "mechanism": "Add explicit anti-workaround guidance to execution instruction to prevent disabling validation features as shortcuts",
+  "exact_hook": "build_execution_instruction",
+  "expected_affected_cases": [
+    "mailman#repeat-02"
+  ],
+  "direct_target_confirmed": false,
+  "interpretation": "no valid fail-to-pass transition on the predeclared direct target",
+  "transition_counts": {
+    "fail-to-pass": 3,
+    "pass-to-fail": 0,
+    "pass-to-pass": 13,
+    "fail-to-fail": 2,
+    "invalid-involved": 110
+  },
+  "direct_targets": [
+    {
+      "reference": "mailman#repeat-02",
+      "split": "train",
+      "repeat": 2,
+      "case_id": "mailman",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '2f3bdf44-6b1c-9c45-a01b-d0d18b5cb782'}",
+      "transition": "invalid-involved"
+    }
+  ],
+  "transitions": [
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "break-filter-js-from-html",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1200.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "count-dataset-tokens",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "distribution-search",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "dna-assembly",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "extract-moves-from-video",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "fail-to-fail"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "feal-linear-cryptanalysis",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "filter-js-from-html",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "git-multibranch",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "fail-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "headless-terminal",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "kv-store-grpc",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "large-scale-text-editing",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "largest-eigenval",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "make-mips-interpreter",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "fail-to-fail"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "modernize-scientific-stack",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "openssl-selfsigned-cert",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "path-tracing-reverse",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "pypi-server",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "pytorch-model-cli",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "fail-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "rstan-to-pystan",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "fail-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "sqlite-db-truncate",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "tune-mjcf",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "break-filter-js-from-html",
+      "baseline_passed": true,
+      "candidate_passed": false,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1200.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "count-dataset-tokens",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "distribution-search",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": null,
+      "transition": "pass-to-pass"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "dna-assembly",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "extract-moves-from-video",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'request_id': '1d867e6b-8d8b-9d57-b490-6eaf08b51097', 'code': 'InternalError.Algo', 'message': '<50004> InternalError.Algo.QwenAgentError: Internal Error during qwen agent. The error message is [Object of type MMGPT3Item is not JSON serializable]'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "feal-linear-cryptanalysis",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "filter-js-from-html",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "git-multibranch",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "headless-terminal",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "kv-store-grpc",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "large-scale-text-editing",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "largest-eigenval",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "inconsistent passed=False and reward=1.0",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "make-mips-interpreter",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "modernize-scientific-stack",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "openssl-selfsigned-cert",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "path-tracing-reverse",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "pypi-server",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "pytorch-model-cli",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 900.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "rstan-to-pystan",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "sqlite-db-truncate",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "tune-mjcf",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 900.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "bn-fit-modify",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "build-cython-ext",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 900.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "build-pmars",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "build-pov-ray",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "caffe-cifar-10",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1200.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "cancel-async-tasks",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "cobol-modernization",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "constraints-scheduling",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "custom-memory-heap-crash",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "db-wal-recovery",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "dna-insert",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "extract-elf",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "feal-differential-cryptanalysis",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "fix-git",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "gcode-to-text",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 900.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "git-leak-recovery",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "llm-inference-batching-scheduler",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "log-summary-date-ranges",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "mailman",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "make-doom-for-mips",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 900.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "mcmc-sampling-stan",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "merge-diff-arc-agi-task",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "model-extraction-relu-logits",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "multi-source-data-merger",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "nginx-request-logging",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "overfull-hbox",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "password-recovery",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "path-tracing",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "polyglot-c-py",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "polyglot-rust-c",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "missing verifier reward",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "protein-assembly",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "prove-plus-comm",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "qemu-alpine-ssh",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": null,
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "qemu-startup",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "unable to locate package curl",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "raman-fitting",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'addb071f-8f31-952d-b295-50879d1f3414'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "regex-chess",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 3600.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "regex-log",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "agent timeout: Agent execution timed out after 900.0 seconds",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "sparql-university",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'b4c0df1c-a0f3-9098-a6ba-8d88a9a75afe'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "sqlite-with-gcov",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'b41d9921-57c2-9313-b183-96c5dc59932a'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "torch-pipeline-parallelism",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '99590eee-497b-9cac-af2b-a02815888a2f'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "torch-tensor-parallelism",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'f601a4cc-8d92-925e-82ff-b29d456e9030'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "vulnerable-secret",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'ed3a5f93-16b4-9d33-ab72-bb0ab4f97791'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "write-compressor",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '53a5aa22-a6bb-9cc9-ace9-40a7e82d7769'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "bn-fit-modify",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '59e9fa21-570c-9b1b-842b-760029373efe'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-cython-ext",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '63948772-854a-99ea-a2e7-f00a239569de'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-pmars",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '5b81a93d-7b29-9364-9075-24d674ed1497'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-pov-ray",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '185fe04c-468c-9d6a-8eda-a5ce9c89641f'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "caffe-cifar-10",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '112fe2c5-3bc7-904e-ac86-c458d9452b7e'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "cancel-async-tasks",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '6f2b4a07-5104-92d8-b213-02a001b53b68'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "cobol-modernization",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'ebf0c03c-048b-922b-ba2d-4b0d65befed4'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "constraints-scheduling",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '1e45d86a-76da-9642-a464-3d250035f2ed'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "custom-memory-heap-crash",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'd4e66a7b-3737-9a92-8abe-7b1cbd589e1b'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "db-wal-recovery",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '1f278326-7119-91c3-8219-fbf000a51fa3'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "dna-insert",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'a2a9abe5-16b0-92f1-a13a-24eb66e1809c'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "extract-elf",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'ca38da08-fb59-9e53-b409-4126b4e6d5a6'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "feal-differential-cryptanalysis",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'dbf9a1f7-1a11-9d75-a45c-035e2ddc44ca'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "fix-git",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '7a0a2c0a-9ab8-9f19-8757-47fb2ee081c5'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "gcode-to-text",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'ab9e00b8-6e35-93a3-ac61-fe1faead75bb'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "git-leak-recovery",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: APIConnectionError: Connection error.",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '224b7114-acab-9b1d-859e-86aceec55472'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "llm-inference-batching-scheduler",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'd3b6af4a-0482-941f-b75f-1e65071f7d9f'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '3315930c-9edf-9a4e-a389-c96e1db24e53'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "log-summary-date-ranges",
+      "baseline_passed": true,
+      "candidate_passed": false,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'e48ead7b-3a90-9a92-a68b-da0899a57574'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "mailman",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": null,
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '2f3bdf44-6b1c-9c45-a01b-d0d18b5cb782'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "make-doom-for-mips",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '6f9a264a-1219-9ad4-9df7-1a7324209390'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '32a586cd-3673-9a5d-a947-12a106668f53'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "mcmc-sampling-stan",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'd63ce4a4-0f55-990e-b70c-acc2b305697c'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '862442e4-13e2-961f-805f-e67ef28f5a65'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "merge-diff-arc-agi-task",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '846a60ee-352a-97de-aac7-473c2972af33'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'c00c1300-4d4e-90d7-8a2e-6ea032238c4f'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "model-extraction-relu-logits",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'f5128290-151d-99e0-a116-f1995ca34483'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '61888ff9-63fd-990b-b0f8-b245867e588b'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "multi-source-data-merger",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'ddb69f90-fa3c-9f70-8f43-a462eee4c01b'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '8702523c-dbde-9191-a33d-66d07d01075e'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "nginx-request-logging",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '1bd6caf7-0cdd-909f-811f-14158658dba4'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '24f582dc-5a15-9841-bc6a-2108c2c6f709'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "overfull-hbox",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '709b9eeb-2e89-9edd-a1f5-0408dddb33ad'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'd52f9c75-86de-93df-aad6-36c89afd76fc'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "password-recovery",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '2decb3a4-6668-95ad-b904-2cc18f2a6454'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '3833193f-a200-9009-973b-b42d73f3a08d'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "path-tracing",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '17c3069c-06a0-904e-bdaa-6690c05790e1'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '443b8d19-1369-9c8e-bcfd-d0e3eec83116'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "polyglot-c-py",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'db435211-15f0-9903-b5fb-1ee5b3671403'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'f98f8fa8-f372-98a7-acd2-66452cfbf2eb'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "polyglot-rust-c",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'bde3efda-ac55-9e59-a903-fe54a8b3bd1f'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '37cfb117-67db-9566-84c3-d5912264f204'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "protein-assembly",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '0d5358fb-06ed-973b-852c-632b42c868d8'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '1d9485b6-1c34-9531-9564-78a20f366b3d'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "prove-plus-comm",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '85ce9910-c03c-9a68-8161-64f58cd252b1'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '4edead0f-549c-901d-bbf7-a8b06b1db0aa'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "qemu-alpine-ssh",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '0364685b-a92f-94bd-b24e-4198ff6d165f'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '20b63600-807b-9f2f-922b-75baed62cfb8'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "qemu-startup",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'a284f943-fac0-9753-a0d1-bbe495623bb6'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '911b3315-4275-9459-96fb-f7b411111fd6'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "raman-fitting",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'ce9938db-a405-9c65-980e-2a7ce591a8e1'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '334b6b93-e1fa-95a6-a5df-388c70bc72e6'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "regex-chess",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '0fe0c031-57f1-9f0b-862a-7ac3bbb5a04f'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '55ccc59b-2669-9732-af71-d59556eec538'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "regex-log",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '644e3fba-090b-9624-b161-237ef4db3662'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '21bc53eb-4a5b-93ac-939c-6db94c3d4885'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "sparql-university",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'a676f565-af1a-984f-87bd-df2e5789d05c'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '5e5f7a3f-59c2-93f0-9512-fc149231db14'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "sqlite-with-gcov",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '095550b6-f1b9-91dd-ab8a-21011da2ba15'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'af713745-f2ee-90a4-9da7-d55bb92ed2b2'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "torch-pipeline-parallelism",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '9356feba-a419-9beb-84bd-29913bbddf91'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': 'e56067f1-64ce-91f8-ace7-eca94465329c'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "torch-tensor-parallelism",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '34f8f18d-b400-9250-bd65-528b07ff6f0c'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '45f09173-87fd-9cb8-b169-facc382a800e'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "vulnerable-secret",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '407e6120-4490-91b1-975f-b5ad71747b79'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '688dcb0e-a115-9a95-a435-59a1f08936c6'}",
+      "transition": "invalid-involved"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "write-compressor",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '2fa7bf7d-e3a8-9fef-998b-e3a8da322b6d'}",
+      "candidate_invalid_reason": "runtime failure: BadRequestError: Error code: 400 - {'code': 'Arrearage', 'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'request_id': '8fe0c1ab-44ae-94ca-ae84-b87c6ded3b27'}",
+      "transition": "invalid-involved"
+    }
+  ],
+  "source_files": [
+    {
+      "role": "proposal",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-self-harness\\branches\\baseline\\candidates\\anti_workaround_execution\\proposal.json",
+      "sha256": "51b769e95bf32ff3f0457cd10c2d5ffaf77141879a074464ebd5c5f9842339d2"
+    },
+    {
+      "role": "baseline_result",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-baseline\\result.json",
+      "sha256": "bdbcdf0ac465281878eed804320476f1c57184b37195dbd5989c425e002e68a0"
+    },
+    {
+      "role": "candidate_result",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-self-harness\\branches\\baseline\\candidates\\anti_workaround_execution\\eval\\result.json",
+      "sha256": "ae6c20c2a6a386e0da569c130bd01b9df4cda090cce4ed5320b28a4abb1c4cbb"
+    }
+  ]
+}

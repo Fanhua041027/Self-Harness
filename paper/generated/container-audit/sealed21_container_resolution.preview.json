@@ -1,0 +1,203 @@
+{
+  "format": "self_harness.container_resolution.v1",
+  "captured_at": "2026-08-11T18:06:32.033532+00:00",
+  "outcome_blind": true,
+  "pull_performed": false,
+  "docker_executable": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe",
+  "docker_client_version": "29.3.1",
+  "docker_server_version": "29.3.1",
+  "case_ids": [
+    "adaptive-rejection-sampler",
+    "chess-best-move",
+    "circuit-fibsqrt",
+    "compile-compcert",
+    "configure-git-webserver",
+    "crack-7z-hash",
+    "fix-code-vulnerability",
+    "fix-ocaml-gc",
+    "gpt2-codegolf",
+    "hf-model-inference",
+    "install-windows-3.11",
+    "mteb-leaderboard",
+    "mteb-retrieve",
+    "portfolio-optimization",
+    "pytorch-model-recovery",
+    "query-optimize",
+    "reshard-c4-data",
+    "sanitize-git-repo",
+    "schemelike-metacircular-eval",
+    "train-fasttext",
+    "winning-avg-corewars"
+  ],
+  "reference_count": 5,
+  "resolved_count": 0,
+  "complete": false,
+  "images": [
+    {
+      "reference": "debian:13.0-slim",
+      "used_by": [
+        {
+          "case_id": "winning-avg-corewars",
+          "dockerfile": "environment/Dockerfile",
+          "line": 3
+        }
+      ],
+      "found": false,
+      "image_id": null,
+      "repo_digests": [],
+      "repo_tags": [],
+      "created": null,
+      "os": null,
+      "architecture": null
+    },
+    {
+      "reference": "python:3.10-slim-bookworm",
+      "used_by": [
+        {
+          "case_id": "mteb-leaderboard",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "mteb-retrieve",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        }
+      ],
+      "found": false,
+      "image_id": null,
+      "repo_digests": [],
+      "repo_tags": [],
+      "created": null,
+      "os": null,
+      "architecture": null
+    },
+    {
+      "reference": "python:3.11-slim",
+      "used_by": [
+        {
+          "case_id": "fix-code-vulnerability",
+          "dockerfile": "environment/Dockerfile",
+          "line": 3
+        }
+      ],
+      "found": false,
+      "image_id": null,
+      "repo_digests": [],
+      "repo_tags": [],
+      "created": null,
+      "os": null,
+      "architecture": null
+    },
+    {
+      "reference": "python:3.13-slim-bookworm",
+      "used_by": [
+        {
+          "case_id": "circuit-fibsqrt",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "hf-model-inference",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "portfolio-optimization",
+          "dockerfile": "environment/Dockerfile",
+          "line": 3
+        },
+        {
+          "case_id": "pytorch-model-recovery",
+          "dockerfile": "environment/Dockerfile",
+          "line": 3
+        },
+        {
+          "case_id": "reshard-c4-data",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "sanitize-git-repo",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "schemelike-metacircular-eval",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "train-fasttext",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        }
+      ],
+      "found": false,
+      "image_id": null,
+      "repo_digests": [],
+      "repo_tags": [],
+      "created": null,
+      "os": null,
+      "architecture": null
+    },
+    {
+      "reference": "ubuntu:24.04",
+      "used_by": [
+        {
+          "case_id": "adaptive-rejection-sampler",
+          "dockerfile": "environment/Dockerfile",
+          "line": 3
+        },
+        {
+          "case_id": "chess-best-move",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "compile-compcert",
+          "dockerfile": "environment/Dockerfile",
+          "line": 3
+        },
+        {
+          "case_id": "configure-git-webserver",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "crack-7z-hash",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "fix-ocaml-gc",
+          "dockerfile": "environment/Dockerfile",
+          "line": 3
+        },
+        {
+          "case_id": "gpt2-codegolf",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "install-windows-3.11",
+          "dockerfile": "environment/Dockerfile",
+          "line": 2
+        },
+        {
+          "case_id": "query-optimize",
+          "dockerfile": "environment/Dockerfile",
+          "line": 3
+        }
+      ],
+      "found": false,
+      "image_id": null,
+      "repo_digests": [],
+      "repo_tags": [],
+      "created": null,
+      "os": null,
+      "architecture": null
+    }
+  ],
+  "bundle_sha256": "38070cb1ab1eecc96afdbb0288345ad37e44ba5670dc3f5be39383ede4efba84"
+}

@@ -4,12 +4,19 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import matplotlib.pyplot as plt
 import numpy as np
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from result_validity import is_effectively_invalid
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -25,6 +32,7 @@ def main() -> int:
     OUTPUT.mkdir(parents=True, exist_ok=True)
     expected = load_expected_cases(CONFIG)
     records = collect_records()
+    validate_records(expected=expected, records=records)
     provenance = build_provenance(expected=expected, records=records)
     write_json(OUTPUT / "provenance.json", provenance)
     configure_style()
@@ -71,6 +79,7 @@ def collect_records() -> list[dict[str, Any]]:
                     "attempt_count": int(payload.get("attempt_count", 1)),
                     "duration_s": float(payload.get("duration_s", 0)),
                     "infrastructure_error": payload.get("infrastructure_error"),
+                    "trace_metadata": payload.get("trace_metadata"),
                     "source_path": str(path.resolve()),
                     "source_sha256": sha256_file(path),
                 }
@@ -78,7 +87,28 @@ def collect_records() -> list[dict[str, Any]]:
     return records
 
 
-def build_provenance(*, expected: dict[str, list[str]], records: list[dict[str, Any]]) -> dict[str, Any]:
+def validate_records(*, expected: dict[str, list[str]], records: list[dict[str, Any]]) -> None:
+    expected_by_model = {
+        model: {
+            (split, repeat, case_id)
+            for split, case_ids in expected.items()
+            for repeat in (1, 2)
+            for case_id in case_ids
+        }
+        for model in RUNS
+    }
+    for model in RUNS:
+        actual = [
+            (item["split"], int(item["repeat"]), item["case_id"])
+            for item in records
+            if item["model"] == model
+        ]
+        if len(actual) != len(set(actual)):
+            raise RuntimeError(f"{model}: live report contains duplicate case checkpoints")
+        if not set(actual).issubset(expected_by_model[model]):
+            raise RuntimeError(f"{model}: live report contains an unexpected case identity")
+
+
     manifest = ROOT / "runs" / "terminal-bench-2-reliable-v2" / "SELF_HARNESS_BOOTSTRAP_MANIFEST.json"
     return {
         "generated_at": datetime.now(timezone.utc).astimezone().isoformat(),
@@ -95,7 +125,7 @@ def build_provenance(*, expected: dict[str, list[str]], records: list[dict[str, 
         },
         "aggregation": {
             "completed": "number of case checkpoint result.json files",
-            "valid": "completed records whose status is not invalid",
+            "valid": "completed records with a numeric verifier-consistent outcome and no runtime failure",
             "observed_pass_rate": "passed valid completed records / valid completed records",
             "invalid_handling": "included in retry/infrastructure audit; excluded from observed pass rate",
             "final_repeat_metric": "mean of per-repeat pass rates after all expected trials complete",
@@ -149,7 +179,13 @@ def draw_completion(*, expected: dict[str, list[str]], records: list[dict[str, A
 
 
 def observed_rate(records: list[dict[str, Any]], model: str, split: str) -> tuple[float | None, int]:
-    valid = [item for item in records if item["model"] == model and item["split"] == split and item["status"] != "invalid"]
+    valid = [
+        item
+        for item in records
+        if item["model"] == model
+        and item["split"] == split
+        and not is_effectively_invalid(item, require_reward=True)
+    ]
     if not valid:
         return None, 0
     return sum(item["passed"] for item in valid) / len(valid), len(valid)
@@ -229,7 +265,7 @@ def write_report(*, expected: dict[str, list[str]], records: list[dict[str, Any]
     rows = []
     for model in RUNS:
         items = model_records(records, model)
-        valid = [item for item in items if item["status"] != "invalid"]
+        valid = [item for item in items if not is_effectively_invalid(item, require_reward=True)]
         passed = sum(item["passed"] for item in valid)
         rate = f"{passed / len(valid) * 100:.2f}%" if valid else "等待数据"
         rows.append(f"| {model} | {len(items)} / {total} | {len(valid)} | {passed} | {rate} |")
@@ -252,7 +288,7 @@ def write_report(*, expected: dict[str, list[str]], records: list[dict[str, Any]
 1. 从 `runs/clean64-*/splits/<split>/repeat-*/cases/<case>/result.json` 读取已完成 checkpoint。
 2. 配置分母来自 `{CONFIG.relative_to(ROOT).as_posix()}`，不是根据已有结果反推。
 3. 每个输入文件的绝对路径和 SHA-256 写入 `provenance.json`。
-4. `status=invalid` 的记录进入基础设施与重试审计，但不进入观察通过率。
+4. 显式 `status=invalid` 以及历史上误标为 `failed` 但缺少 verifier reward、存在 runtime failure 或 reward/status 不一致的记录，均进入基础设施与重试审计，不进入观察通过率。
 5. 阶段观察通过率 = 已通过的有效完成 trial ÷ 有效完成 trial。
 6. 最终论文指标将在所有 trial 完成后，先计算每次 repeat 的 split pass rate，再对两次 repeat 取平均。
 

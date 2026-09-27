@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="770" viewBox="0 0 980 770">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:22px;font-weight:700}.label{font-size:13px}.value{font-size:11px;fill:#475569}.note{font-size:12px;fill:#64748b}</style>
+<text x="490" y="32" text-anchor="middle" class="title">Outcome-blind task-category coverage</text>
+<rect x="330" y="50" width="14" height="10" fill="#64748b"/><text x="350" y="60" class="label">Clean64</text>
+<rect x="440" y="50" width="14" height="10" fill="#0f9d76"/><text x="460" y="60" class="label">Sealed21</text>
+<text x="238" y="97" text-anchor="end" class="label">software-engineering</text>
+<rect x="250" y="82" width="650.0" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="99" width="495.2" height="13" rx="2" fill="#0f9d76"/>
+<text x="906.0" y="93" class="value">31.2%</text>
+<text x="751.2" y="110" class="value">23.8%</text>
+<text x="238" y="139" text-anchor="end" class="label">scientific-computing</text>
+<rect x="250" y="124" width="227.5" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="141" width="99.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="483.5" y="135" class="value">10.9%</text>
+<text x="355.0" y="152" class="value">4.8%</text>
+<text x="238" y="181" text-anchor="end" class="label">system-administration</text>
+<rect x="250" y="166" width="195.0" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="183" width="297.1" height="13" rx="2" fill="#0f9d76"/>
+<text x="451.0" y="177" class="value">9.4%</text>
+<text x="553.1" y="194" class="value">14.3%</text>
+<text x="238" y="223" text-anchor="end" class="label">debugging</text>
+<rect x="250" y="208" width="162.5" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="225" width="0.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="418.5" y="219" class="value">7.8%</text>
+<text x="256.0" y="236" class="value">0.0%</text>
+<text x="238" y="265" text-anchor="end" class="label">file-operations</text>
+<rect x="250" y="250" width="162.5" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="267" width="0.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="418.5" y="261" class="value">7.8%</text>
+<text x="256.0" y="278" class="value">0.0%</text>
+<text x="238" y="307" text-anchor="end" class="label">security</text>
+<rect x="250" y="292" width="162.5" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="309" width="297.1" height="13" rx="2" fill="#0f9d76"/>
+<text x="418.5" y="303" class="value">7.8%</text>
+<text x="553.1" y="320" class="value">14.3%</text>
+<text x="238" y="349" text-anchor="end" class="label">mathematics</text>
+<rect x="250" y="334" width="130.0" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="351" width="0.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="386.0" y="345" class="value">6.2%</text>
+<text x="256.0" y="362" class="value">0.0%</text>
+<text x="238" y="391" text-anchor="end" class="label">data-processing</text>
+<rect x="250" y="376" width="97.5" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="393" width="0.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="353.5" y="387" class="value">4.7%</text>
+<text x="256.0" y="404" class="value">0.0%</text>
+<text x="238" y="433" text-anchor="end" class="label">machine-learning</text>
+<rect x="250" y="418" width="97.5" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="435" width="0.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="353.5" y="429" class="value">4.7%</text>
+<text x="256.0" y="446" class="value">0.0%</text>
+<text x="238" y="475" text-anchor="end" class="label">data-science</text>
+<rect x="250" y="460" width="65.0" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="477" width="495.2" height="13" rx="2" fill="#0f9d76"/>
+<text x="321.0" y="471" class="value">3.1%</text>
+<text x="751.2" y="488" class="value">23.8%</text>
+<text x="238" y="517" text-anchor="end" class="label">model-training</text>
+<rect x="250" y="502" width="65.0" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="519" width="198.1" height="13" rx="2" fill="#0f9d76"/>
+<text x="321.0" y="513" class="value">3.1%</text>
+<text x="454.1" y="530" class="value">9.5%</text>
+<text x="238" y="559" text-anchor="end" class="label">data-querying</text>
+<rect x="250" y="544" width="32.5" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="561" width="0.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="288.5" y="555" class="value">1.6%</text>
+<text x="256.0" y="572" class="value">0.0%</text>
+<text x="238" y="601" text-anchor="end" class="label">personal-assistant</text>
+<rect x="250" y="586" width="32.5" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="603" width="0.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="288.5" y="597" class="value">1.6%</text>
+<text x="256.0" y="614" class="value">0.0%</text>
+<text x="238" y="643" text-anchor="end" class="label">games</text>
+<rect x="250" y="628" width="0.0" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="645" width="99.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="256.0" y="639" class="value">0.0%</text>
+<text x="355.0" y="656" class="value">4.8%</text>
+<text x="238" y="685" text-anchor="end" class="label">optimization</text>
+<rect x="250" y="670" width="0.0" height="13" rx="2" fill="#64748b"/>
+<rect x="250" y="687" width="99.0" height="13" rx="2" fill="#0f9d76"/>
+<text x="256.0" y="681" class="value">0.0%</text>
+<text x="355.0" y="698" class="value">4.8%</text>
+<text x="490" y="752" text-anchor="middle" class="note">Metadata coverage only; no model outcomes were read.</text>
+</svg>

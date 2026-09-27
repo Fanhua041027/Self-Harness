@@ -69,7 +69,8 @@ def test_adapter_does_not_fallback_on_payload_error():
 
 def test_fingerprint_normalizes_path_and_gates_roles():
     spec = ModelSpec()
-    assert spec.fingerprint("HTTPS://EXAMPLE.COM/v1") == spec.fingerprint("https://example.com/other")
+    assert spec.fingerprint("HTTPS://EXAMPLE.COM/v1") == spec.fingerprint("https://example.com/v1/")
+    assert spec.fingerprint("https://example.com/v1") != spec.fingerprint("https://example.com/other")
     gate = FingerprintGate()
     fingerprint = spec.fingerprint("https://example.com/v1")
     for role in ("execution", "diagnosis", "proposal"):

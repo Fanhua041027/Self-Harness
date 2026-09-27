@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="300" viewBox="0 0 1100 300">
+<rect width="1100" height="300" fill="white"/>
+<style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:22px;font-weight:700}.head{font-size:17px;font-weight:700}.body{font-size:13px}</style>
+<text x="550" y="34" text-anchor="middle" class="title">Mechanism evidence chain (historical Qwen candidate)</text>
+<rect x="45" y="75" width="285" height="145" rx="12" fill="#eef4ff" stroke="#6682b5"/>
+<text x="65" y="105" class="head">1. Diagnosed mechanism</text><text x="65" y="135" class="body">disabled_local_recipient_maps</text><text x="65" y="158" class="body">root_cause</text><text x="65" y="181" class="body">workaround_instead_of_fix</text>
+<rect x="405" y="75" width="285" height="145" rx="12" fill="#f3f0ff" stroke="#8068b5"/>
+<text x="425" y="105" class="head">2. Candidate edit</text><text x="425" y="135" class="body">hook: build_execution_instruction</text>
+<rect x="765" y="75" width="290" height="145" rx="12" fill="#fff3f1" stroke="#c2413b" stroke-width="2"/>
+<text x="785" y="105" class="head">3. Direct target outcome</text><text x="785" y="135" class="body">mailman#repeat-02</text><text x="785" y="175" class="head" fill="#c2413b">Not confirmed</text>
+<path d="M330 147 H405" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/><path d="M690 147 H765" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/></marker></defs>
+<text x="550" y="266" text-anchor="middle" class="body">Direct confirmation requires a valid fail-to-pass transition on the predeclared target.</text>
+</svg>

@@ -5,6 +5,8 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 
 def load_runner_module():
     path = Path(__file__).resolve().parents[1] / "eval" / "scripts" / "run_harbor_eval.py"
@@ -79,6 +81,51 @@ def test_detects_structured_agent_timeout(tmp_path: Path) -> None:
     assert error == "agent timeout: Agent execution timed out after 1800.0 seconds"
 
 
+def test_exception_takes_precedence_over_stale_positive_reward(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    result = make_trial(tmp_path, "")
+
+    error = runner.detect_verifier_infrastructure_error(
+        trial_result_path=result,
+        reward=1.0,
+        exception_info={
+            "exception_type": "AgentTimeoutError",
+            "exception_message": "Agent execution timed out after 900.0 seconds",
+        },
+    )
+
+    assert error == "agent timeout: Agent execution timed out after 900.0 seconds"
+
+
+def test_detects_api_connection_exception_without_reward(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    result = make_trial(tmp_path, "")
+
+    error = runner.detect_verifier_infrastructure_error(
+        trial_result_path=result,
+        reward=None,
+        exception_info={
+            "exception_type": "APIConnectionError",
+            "exception_message": "Connection error.",
+        },
+    )
+
+    assert error == "harbor exception: APIConnectionError: Connection error."
+
+
+def test_existing_trial_without_reward_is_infrastructure_failure(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    result = make_trial(tmp_path, "")
+
+    error = runner.detect_verifier_infrastructure_error(
+        trial_result_path=result,
+        reward=None,
+        exception_info=None,
+    )
+
+    assert error == "harbor trial has no verifier reward"
+
+
 def test_detects_wrapper_invoke_timeout(tmp_path: Path) -> None:
     runner = load_runner_module()
     result = make_trial(tmp_path, "")
@@ -92,6 +139,34 @@ def test_detects_wrapper_invoke_timeout(tmp_path: Path) -> None:
     error = runner.detect_verifier_infrastructure_error(trial_result_path=result, reward=0.0)
 
     assert error == "agent invoke timeout after 900.0 seconds"
+
+
+def test_detects_docker_compose_startup_failure(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    result = make_trial(tmp_path, "")
+
+    error = runner.detect_verifier_infrastructure_error(
+        trial_result_path=result,
+        reward=None,
+        exception_info={
+            "exception_type": "RuntimeError",
+            "exception_message": "Docker compose command failed for environment sample-task.",
+        },
+    )
+
+    assert error == "docker compose command failed"
+
+
+def test_missing_harbor_trial_result_is_infrastructure_failure() -> None:
+    runner = load_runner_module()
+
+    error = runner.detect_verifier_infrastructure_error(
+        trial_result_path=None,
+        reward=None,
+        exception_info=None,
+    )
+
+    assert error == "harbor did not produce a trial result"
 
 
 def test_harbor_case_retries_infrastructure_failure(monkeypatch, tmp_path: Path) -> None:
@@ -162,6 +237,90 @@ def test_harbor_case_retries_infrastructure_failure(monkeypatch, tmp_path: Path)
     assert [item["job_name"] for item in audit["attempts"]] == ["trial", "retry-02"]
 
 
+def test_case_directory_avoids_slug_collisions(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    first = runner.case_directory(tmp_path, "foo/bar")
+    second = runner.case_directory(tmp_path, "foo bar")
+    assert first != second
+    assert first.name.startswith("foo_bar--")
+    assert second.name.startswith("foo_bar--")
+def test_case_checkpoint_rejects_wrong_identity(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    payload = {
+        "case_id": "other-task",
+        "case_id_sha256": runner.hashlib.sha256(b"other-task").hexdigest(),
+        "split": "train",
+        "repeat": 1,
+    }
+    with pytest.raises(ValueError, match="checkpoint identity mismatch"):
+        runner.validate_case_checkpoint(
+            payload,
+            case_id="sample-task",
+            split="train",
+            repeat=1,
+        )
+
+
+def test_resume_uses_new_harbor_job_name(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    jobs_dir = tmp_path / "harbor"
+    (jobs_dir / "trial").mkdir(parents=True)
+    (jobs_dir / "trial-resume-02").mkdir()
+
+    assert runner.available_harbor_job_name(jobs_dir, "trial") == "trial-resume-03"
+
+
+def test_run_identity_prevents_mixed_checkpoint_reuse(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    output = tmp_path / "run"
+    output.mkdir()
+
+    runner.establish_run_identity(
+        output_dir=output, run_identity="sealed:baseline:v1", reuse_existing=True
+    )
+    runner.establish_run_identity(
+        output_dir=output, run_identity="sealed:baseline:v1", reuse_existing=True
+    )
+
+    with pytest.raises(RuntimeError, match="run identity mismatch"):
+        runner.establish_run_identity(
+            output_dir=output, run_identity="sealed:candidate:v1", reuse_existing=True
+        )
+
+
+def test_run_identity_rejects_unmarked_legacy_checkpoint(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    output = tmp_path / "run"
+    checkpoint = output / "splits" / "sealed" / "repeat-01" / "result.json"
+    checkpoint.parent.mkdir(parents=True)
+    checkpoint.write_text("{}", encoding="utf-8")
+
+    with pytest.raises(RuntimeError, match="without a run identity marker"):
+        runner.establish_run_identity(
+            output_dir=output, run_identity="sealed:baseline:v1", reuse_existing=True
+        )
+
+
+def test_run_identity_also_binds_raw_config_hash(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    output = tmp_path / "run"
+    output.mkdir()
+    runner.establish_run_identity(
+        output_dir=output,
+        run_identity="sealed:baseline:v1",
+        reuse_existing=True,
+        config_sha256="a" * 64,
+    )
+
+    with pytest.raises(RuntimeError, match="run identity mismatch"):
+        runner.establish_run_identity(
+            output_dir=output,
+            run_identity="sealed:baseline:v1",
+            reuse_existing=True,
+            config_sha256="b" * 64,
+        )
+
+
 def test_repeat_reuses_case_checkpoint(monkeypatch, tmp_path: Path) -> None:
     runner = load_runner_module()
     case = runner.Case("sample-task", "train", "test")
@@ -188,11 +347,12 @@ def test_repeat_reuses_case_checkpoint(monkeypatch, tmp_path: Path) -> None:
     repeat_dir = tmp_path / "repeat"
 
     def fake_run_case(**kwargs):
-        artifacts = repeat_dir / "cases" / "sample-task"
+        artifacts = runner.case_directory(repeat_dir, "sample-task")
         artifacts.mkdir(parents=True, exist_ok=True)
         return {
             "index": 0,
             "case_id": "sample-task",
+            "case_id_sha256": runner.hashlib.sha256(b"sample-task").hexdigest(),
             "split": "train",
             "stratum": "test",
             "repeat": 1,
@@ -225,3 +385,15 @@ def test_repeat_reuses_case_checkpoint(monkeypatch, tmp_path: Path) -> None:
     )
 
     assert first["passed"] == second["passed"] == 1
+
+
+def test_harbor_json_loader_accepts_bom_and_rejects_duplicate_keys(tmp_path: Path) -> None:
+    runner = load_runner_module()
+    valid = tmp_path / "valid.json"
+    valid.write_text('{"format": "fixture"}', encoding="utf-8-sig")
+    assert runner.read_json_if_exists(valid) == {"format": "fixture"}
+
+    duplicate = tmp_path / "duplicate.json"
+    duplicate.write_text('{"outer": {"status": "failed", "status": "invalid"}}', encoding="utf-8")
+    with pytest.raises(ValueError, match="duplicate JSON key: status"):
+        runner.read_json_if_exists(duplicate)

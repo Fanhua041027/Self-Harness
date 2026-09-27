@@ -11,7 +11,7 @@ environment = "docker"
 agent_kwargs = ["hard_timeout_sec=1800"]
 case_concurrency = 4
 timeout_s = 3000
-infrastructure_retries = 2
+infrastructure_retries = 0
 
 [[cases]]
 case_id = "bn-fit-modify"

@@ -3,12 +3,19 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import matplotlib.pyplot as plt
 import numpy as np
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from result_validity import is_effectively_invalid, repeat_aggregate_consistency_error
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -62,6 +69,7 @@ def load_model(paths: dict[str, Path]) -> dict[str, Any]:
     final = read_json(final_path)
     validate_complete(baseline, label=str(baseline_path))
     validate_complete(final, label=str(final_path))
+    validate_same_case_manifest(baseline, final, label=f"{baseline_path} vs {final_path}")
     return {
         "baseline": baseline,
         "final": final,
@@ -77,10 +85,43 @@ def validate_complete(payload: dict[str, Any], *, label: str) -> None:
         repeats = payload.get("splits", {}).get(split)
         if not isinstance(repeats, list) or len(repeats) != 2:
             raise RuntimeError(f"{label}: {split} 必须有两次 repeat")
+        repeat_ids = [repeat.get("repeat") for repeat in repeats]
+        if sorted(repeat_ids) != [1, 2]:
+            raise RuntimeError(f"{label}: {split} repeat ID 集合必须为 [1, 2]")
+        expected_case_ids: set[str] | None = None
         for repeat in repeats:
+            if repeat.get("split", split) != split:
+                raise RuntimeError(f"{label}: {split} repeat 的 split 元数据不匹配")
+            repeat_id = repeat.get("repeat")
+            if isinstance(repeat_id, bool) or repeat_id not in (1, 2):
+                raise RuntimeError(f"{label}: {split} repeat ID 必须为 1 或 2")
             cases = repeat.get("case_results", [])
-            if any(item.get("status") == "invalid" for item in cases):
-                raise RuntimeError(f"{label}: {split} 含 invalid trial")
+            if not isinstance(cases, list):
+                raise RuntimeError(f"{label}: {split} repeat 缺少 case_results")
+            case_ids = [item.get("case_id") for item in cases if isinstance(item, dict)]
+            if len(case_ids) != len(cases) or any(not isinstance(case_id, str) or not case_id for case_id in case_ids):
+                raise RuntimeError(f"{label}: {split} repeat 含无效 case identity")
+            if len(case_ids) != len(set(case_ids)):
+                raise RuntimeError(f"{label}: {split} repeat 含重复 case identity")
+            current_case_ids = set(case_ids)
+            if expected_case_ids is None:
+                expected_case_ids = current_case_ids
+            elif current_case_ids != expected_case_ids:
+                raise RuntimeError(f"{label}: {split} 两次 repeat 的 case manifest 不一致")
+            for item in cases:
+                if item.get("split", split) != split or item.get("repeat", repeat.get("repeat")) != repeat.get("repeat"):
+                    raise RuntimeError(f"{label}: {split} repeat 含错误 case 元数据")
+            aggregate_error = repeat_aggregate_consistency_error(repeat)
+            if aggregate_error is not None:
+                raise RuntimeError(
+                    f"{label}: {split} repeat-{repeat.get('repeat')} aggregate mismatch: {aggregate_error}"
+                )
+            invalid_count = sum(is_effectively_invalid(item, require_reward=True) for item in cases)
+            if invalid_count:
+                raise RuntimeError(
+                    f"{label}: {split} repeat-{repeat.get('repeat')} 含 "
+                    f"{invalid_count} 个 effective-invalid trial，禁止生成最终报告"
+                )
             if int(repeat.get("total", -1)) != expected_total:
                 raise RuntimeError(f"{label}: {split} 分母不完整")
             total += int(repeat["total"])
@@ -88,7 +129,25 @@ def validate_complete(payload: dict[str, Any], *, label: str) -> None:
         raise RuntimeError(f"{label}: 总 trial 数必须为 128")
 
 
-def split_rates(payload: dict[str, Any], split: str) -> list[float]:
+def validate_same_case_manifest(
+    baseline: dict[str, Any], final: dict[str, Any], *, label: str
+) -> None:
+    def manifest(payload: dict[str, Any]) -> dict[str, set[str]]:
+        return {
+            split: {
+                str(case["case_id"])
+                for repeat in payload["splits"][split]
+                for case in repeat["case_results"]
+            }
+            for split in ("train", "heldout")
+        }
+
+    baseline_manifest = manifest(baseline)
+    final_manifest = manifest(final)
+    if baseline_manifest != final_manifest:
+        raise RuntimeError(f"{label}: baseline 与 final 的 case manifest 不一致")
+
+
     return [int(item["passed"]) / int(item["total"]) for item in payload["splits"][split]]
 
 

@@ -1,0 +1,1315 @@
+{
+  "format": "self_harness.invalid_rerun_plan.v1",
+  "generated_at": "2026-08-11T21:14:21.318565+00:00",
+  "output_dir": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-deepseek-self-harness\\branches\\baseline\\candidates\\required_output_file_exists\\eval",
+  "source_result": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-deepseek-self-harness\\branches\\baseline\\candidates\\required_output_file_exists\\eval\\result.json",
+  "source_result_sha256": "e511ef76b6ed8e57144306158ec4724488b9108d6222d32503b70187e54031de",
+  "source_result_stable": true,
+  "model": "openai:deepseek-v4-flash",
+  "config": "C:\\Users\\29838\\Desktop\\Self-Harness\\eval\\configs\\harbor_clean64_rerun.toml",
+  "candidate_workspace": null,
+  "selection": "all_effective_invalid",
+  "global_invalid_count_at_plan_time": 128,
+  "invalid_count": 128,
+  "reason_counts": {
+    "dependency": 2,
+    "missing_trial": 122,
+    "provider": 1,
+    "timeout": 3
+  },
+  "affected_repeats": [
+    "heldout/repeat-01",
+    "heldout/repeat-02",
+    "train/repeat-01",
+    "train/repeat-02"
+  ],
+  "max_model_attempts": 384,
+  "worst_case_wall_hours_at_configured_concurrency": 104.0,
+  "limits": {
+    "timeout_s": 3900.0,
+    "infrastructure_retries": 2,
+    "case_concurrency": 4
+  },
+  "cases": [
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "break-filter-js-from-html",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "count-dataset-tokens",
+      "recorded_status": "invalid",
+      "infrastructure_error": "agent timeout: Agent execution timed out after 900.0 seconds",
+      "reason_category": "timeout",
+      "failure_message": "Verifier infrastructure error: agent timeout: Agent execution timed out after 900.0 seconds",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "distribution-search",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "dna-assembly",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "extract-moves-from-video",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "feal-linear-cryptanalysis",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "filter-js-from-html",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "git-multibranch",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "headless-terminal",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "kv-store-grpc",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "large-scale-text-editing",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "largest-eigenval",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "make-mips-interpreter",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "modernize-scientific-stack",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "openssl-selfsigned-cert",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "path-tracing-reverse",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "pypi-server",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "pytorch-model-cli",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "rstan-to-pystan",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "sqlite-db-truncate",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "tune-mjcf",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "break-filter-js-from-html",
+      "recorded_status": "invalid",
+      "infrastructure_error": "unable to locate package curl",
+      "reason_category": "dependency",
+      "failure_message": "Verifier infrastructure error: unable to locate package curl",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "count-dataset-tokens",
+      "recorded_status": "invalid",
+      "infrastructure_error": "agent timeout: Agent execution timed out after 900.0 seconds",
+      "reason_category": "timeout",
+      "failure_message": "Verifier infrastructure error: agent timeout: Agent execution timed out after 900.0 seconds",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "distribution-search",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "dna-assembly",
+      "recorded_status": "invalid",
+      "infrastructure_error": "agent timeout: Agent execution timed out after 1800.0 seconds",
+      "reason_category": "timeout",
+      "failure_message": "Verifier infrastructure error: agent timeout: Agent execution timed out after 1800.0 seconds",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "extract-moves-from-video",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "feal-linear-cryptanalysis",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "filter-js-from-html",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "git-multibranch",
+      "recorded_status": "failed",
+      "infrastructure_error": "runtime failure: APIConnectionError: Connection error.",
+      "reason_category": "provider",
+      "failure_message": "{\"exception_message\": \"Connection error.\", \"exception_traceback\": \"Traceback (most recent call last):\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpx\\\\_transports\\\\default.py\\\", line 101, in map_httpcore_exceptions\\n    yield\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpx\\\\_transports\\\\default.py\\\", line 394, in handle_async_request\\n    resp = await self._pool.handle_async_request(req)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpcore\\\\_async\\\\connection_pool.py\\\", line 256, in handle_async_request\\n    raise exc from None\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpcore\\\\_async\\\\connection_pool.py\\\", line 236, in handle_async_request\\n    response = await connection.handle_async_request(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        pool_request.request\\n        ^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpcore\\\\_async\\\\connection.py\\\", line 101, in handle_async_request\\n    raise exc\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpcore\\\\_async\\\\connection.py\\\", line 78, in handle_async_request\\n    stream = await self._connect(request)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpcore\\\\_async\\\\connection.py\\\", line 124, in _connect\\n    stream = await self._network_backend.connect_tcp(**kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpcore\\\\_backends\\\\auto.py\\\", line 31, in connect_tcp\\n    return await self._backend.connect_tcp(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    ...<5 lines>...\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpcore\\\\_backends\\\\anyio.py\\\", line 113, in connect_tcp\\n    with map_exceptions(exc_map):\\n         ~~~~~~~~~~~~~~^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\Lib\\\\contextlib.py\\\", line 162, in __exit__\\n    self.gen.throw(value)\\n    ~~~~~~~~~~~~~~^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpcore\\\\_exceptions.py\\\", line 14, in map_exceptions\\n    raise to_exc(exc) from exc\\nhttpcore.ConnectError: All connection attempts failed\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\openai\\\\_base_client.py\\\", line 1709, in request\\n    response = await self._send_request(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^\\n    ...<3 lines>...\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\openai\\\\_client.py\\\", line 1097, in _send_request\\n    response = await self._send_with_auth_retry(request, stream=stream, **kwargs)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\openai\\\\_client.py\\\", line 1075, in _send_with_auth_retry\\n    response = await super()._send_request(request, stream=stream, **kwargs)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\openai\\\\_base_client.py\\\", line 1628, in _send_request\\n    return await self._client.send(request, stream=stream, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpx\\\\_client.py\\\", line 1629, in send\\n    response = await self._send_handling_auth(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    ...<4 lines>...\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpx\\\\_client.py\\\", line 1657, in _send_handling_auth\\n    response = await self._send_handling_redirects(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    ...<3 lines>...\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpx\\\\_client.py\\\", line 1694, in _send_handling_redirects\\n    response = await self._send_single_request(request)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpx\\\\_client.py\\\", line 1730, in _send_single_request\\n    response = await transport.handle_async_request(request)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpx\\\\_transports\\\\default.py\\\", line 393, in handle_async_request\\n    with map_httpcore_exceptions():\\n         ~~~~~~~~~~~~~~~~~~~~~~~^^\\n  File \\\"C:\\\\Users\\\\29838\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\Lib\\\\contextlib.py\\\", line 162, in __exit__\\n    self.gen.throw(value)\\n    ~~~~~~~~~~~~~~^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\httpx\\\\_transports\\\\default.py\\\", line 118, in map_httpcore_exceptions\\n    raise mapped_exc(message) from exc\\nhttpx.ConnectError: All connection attempts failed\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\harbor\\\\trial\\\\trial.py\\\", line 354, in run\\n    await self._run()\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\harbor\\\\trial\\\\single_step.py\\\", line 41, in _run\\n    await self._run_agent()\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\harbor\\\\trial\\\\single_step.py\\\", line 77, in _run_agent\\n    await self._run_agent_phase(\\n    ...<4 lines>...\\n    )\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\harbor\\\\trial\\\\trial.py\\\", line 450, in _run_agent_phase\\n    await asyncio.wait_for(\\n    ...<6 lines>...\\n    )\\n  File \\\"C:\\\\Users\\\\29838\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\Lib\\\\asyncio\\\\tasks.py\\\", line 507, in wait_for\\n    return await fut\\n           ^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\eval\\\\harness_workspace\\\\self_harness_harbor\\\\harbor_wrapper.py\\\", line 497, in run\\n    raise error\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\eval\\\\harness_workspace\\\\self_harness_harbor\\\\harbor_wrapper.py\\\", line 452, in run\\n    await _consume_invoke()\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\eval\\\\harness_workspace\\\\self_harness_harbor\\\\harbor_wrapper.py\\\", line 393, in _consume_invoke\\n    result = await agent.ainvoke(\\n             ^^^^^^^^^^^^^^^^^^^^\\n    ...<2 lines>...\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langgraph\\\\pregel\\\\main.py\\\", line 4090, in ainvoke\\n    async for chunk in self.astream(\\n    ...<30 lines>...\\n            chunks.append(chunk)\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langgraph\\\\pregel\\\\main.py\\\", line 3440, in astream\\n    async for _ in runner.atick(\\n    ...<16 lines>...\\n            yield o\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langgraph\\\\pregel\\\\_runner.py\\\", line 396, in atick\\n    await arun_with_retry(\\n    ...<15 lines>...\\n    )\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langgraph\\\\pregel\\\\_retry.py\\\", line 744, in arun_with_retry\\n    return await task.proc.ainvoke(task.input, config)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langgraph\\\\_internal\\\\_runnable.py\\\", line 733, in ainvoke\\n    input = await asyncio.create_task(\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        step.ainvoke(input, config, **kwargs), context=context\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langgraph\\\\_internal\\\\_runnable.py\\\", line 501, in ainvoke\\n    ret = await self.afunc(*args, **kwargs)\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 1498, in amodel_node\\n    result = await awrap_model_call_handler(request, _execute_model_async)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\middleware\\\\todo.py\\\", line 283, in awrap_model_call\\n    return await handler(request.override(system_message=new_system_message))\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\deepagents\\\\middleware\\\\filesystem.py\\\", line 2005, in awrap_model_call\\n    return await handler(request)\\n           ^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\deepagents\\\\middleware\\\\subagents.py\\\", line 867, in awrap_model_call\\n    return await handler(request.override(system_message=new_system_message))\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\deepagents\\\\middleware\\\\summarization.py\\\", line 1568, in awrap_model_call\\n    return await handler(request.override(messages=truncated_messages))\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\runs\\\\clean64-deepseek-self-harness\\\\branches\\\\baseline\\\\candidates\\\\required_output_file_exists\\\\current\\\\repo_baseline.py\\\", line 150, in awrap_model_call\\n    return await handler(self._modify_request(request))\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\runs\\\\clean64-deepseek-self-harness\\\\branches\\\\baseline\\\\candidates\\\\required_output_file_exists\\\\current\\\\repo_baseline.py\\\", line 150, in awrap_model_call\\n    return await handler(self._modify_request(request))\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\runs\\\\clean64-deepseek-self-harness\\\\branches\\\\baseline\\\\candidates\\\\required_output_file_exists\\\\current\\\\repo_baseline.py\\\", line 150, in awrap_model_call\\n    return await handler(self._modify_request(request))\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\runs\\\\clean64-deepseek-self-harness\\\\branches\\\\baseline\\\\candidates\\\\required_output_file_exists\\\\current\\\\repo_baseline.py\\\", line 150, in awrap_model_call\\n    return await handler(self._modify_request(request))\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\runs\\\\clean64-deepseek-self-harness\\\\branches\\\\baseline\\\\candidates\\\\required_output_file_exists\\\\current\\\\repo_baseline.py\\\", line 150, in awrap_model_call\\n    return await handler(self._modify_request(request))\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 402, in composed\\n    outer_result = await outer(request, inner_handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain_anthropic\\\\middleware\\\\prompt_caching.py\\\", line 187, in awrap_model_call\\n    return await handler(request)\\n           ^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 392, in inner_handler\\n    inner_result = await inner(req, handler)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langsmith\\\\run_helpers.py\\\", line 644, in async_wrapper\\n    function_result = await asyncio.create_task(  # type: ignore[call-arg]\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        fr_coro, context=run_container[\\\"context\\\"]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\deepagents\\\\middleware\\\\memory.py\\\", line 441, in awrap_model_call\\n    return await handler(modified_request)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain\\\\agents\\\\factory.py\\\", line 1467, in _execute_model_async\\n    output = await model_.ainvoke(messages)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain_core\\\\runnables\\\\base.py\\\", line 6015, in ainvoke\\n    return await self.bound.ainvoke(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\\n    ...<3 lines>...\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain_core\\\\language_models\\\\chat_models.py\\\", line 499, in ainvoke\\n    llm_result = await self.agenerate_prompt(\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    ...<8 lines>...\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain_core\\\\language_models\\\\chat_models.py\\\", line 1860, in agenerate_prompt\\n    return await self.agenerate(\\n           ^^^^^^^^^^^^^^^^^^^^^\\n        prompt_messages, stop=stop, callbacks=callbacks, **kwargs\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain_core\\\\language_models\\\\chat_models.py\\\", line 1818, in agenerate\\n    raise exceptions[0]\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain_core\\\\language_models\\\\chat_models.py\\\", line 2151, in _agenerate_with_cache\\n    result = await self._agenerate(\\n             ^^^^^^^^^^^^^^^^^^^^^^\\n        messages, stop=stop, run_manager=run_manager, **kwargs\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain_openai\\\\chat_models\\\\base.py\\\", line 2018, in _agenerate\\n    _handle_openai_api_error(e)\\n    ~~~~~~~~~~~~~~~~~~~~~~~~^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\langchain_openai\\\\chat_models\\\\base.py\\\", line 1997, in _agenerate\\n    await self.root_async_client.responses.with_raw_response.create(\\n        **payload\\n    )\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\openai\\\\_legacy_response.py\\\", line 386, in wrapped\\n    return cast(LegacyAPIResponse[R], await func(*args, **kwargs))\\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\openai\\\\resources\\\\responses\\\\responses.py\\\", line 2865, in create\\n    return await self._post(\\n           ^^^^^^^^^^^^^^^^^\\n    ...<49 lines>...\\n    )\\n    ^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\openai\\\\_base_client.py\\\", line 1992, in post\\n    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\29838\\\\Desktop\\\\Self-Harness\\\\venv\\\\Lib\\\\site-packages\\\\openai\\\\_base_client.py\\\", line 1744, in request\\n    raise APIConnectionError(request=request) from err\\nopenai.APIConnectionError: Connection error.\\nDuring task with name 'model' and id '601233fa-8202-3846-c7d6-46407e168375'\\n\", \"exception_type\": \"APIConnectionError\", \"occurred_at\": \"2026-08-07T01:50:59.322312\"}",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "headless-terminal",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "kv-store-grpc",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "large-scale-text-editing",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "largest-eigenval",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "make-mips-interpreter",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "modernize-scientific-stack",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "openssl-selfsigned-cert",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "path-tracing-reverse",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "pypi-server",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "pytorch-model-cli",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "rstan-to-pystan",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "sqlite-db-truncate",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "tune-mjcf",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "bn-fit-modify",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "build-cython-ext",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "build-pmars",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "build-pov-ray",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "caffe-cifar-10",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "cancel-async-tasks",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "cobol-modernization",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "constraints-scheduling",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "custom-memory-heap-crash",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "db-wal-recovery",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "dna-insert",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "extract-elf",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "feal-differential-cryptanalysis",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "fix-git",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "gcode-to-text",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "git-leak-recovery",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "llm-inference-batching-scheduler",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "log-summary-date-ranges",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "mailman",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "make-doom-for-mips",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "mcmc-sampling-stan",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "merge-diff-arc-agi-task",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "model-extraction-relu-logits",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "multi-source-data-merger",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "nginx-request-logging",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "overfull-hbox",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "password-recovery",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "path-tracing",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "polyglot-c-py",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "polyglot-rust-c",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "protein-assembly",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "prove-plus-comm",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "qemu-alpine-ssh",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "qemu-startup",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "raman-fitting",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "regex-chess",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "regex-log",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "sparql-university",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "sqlite-with-gcov",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "torch-pipeline-parallelism",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "torch-tensor-parallelism",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "vulnerable-secret",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "write-compressor",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "bn-fit-modify",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-cython-ext",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-pmars",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-pov-ray",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "caffe-cifar-10",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "cancel-async-tasks",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "cobol-modernization",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "constraints-scheduling",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "custom-memory-heap-crash",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "db-wal-recovery",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "dna-insert",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "extract-elf",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "feal-differential-cryptanalysis",
+      "recorded_status": "invalid",
+      "infrastructure_error": "unable to locate package curl",
+      "reason_category": "dependency",
+      "failure_message": "Verifier infrastructure error: unable to locate package curl",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "fix-git",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "gcode-to-text",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "git-leak-recovery",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "llm-inference-batching-scheduler",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "log-summary-date-ranges",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "mailman",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "make-doom-for-mips",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "mcmc-sampling-stan",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "merge-diff-arc-agi-task",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "model-extraction-relu-logits",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "multi-source-data-merger",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "nginx-request-logging",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "overfull-hbox",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "password-recovery",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "path-tracing",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "polyglot-c-py",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "polyglot-rust-c",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "protein-assembly",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "prove-plus-comm",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "qemu-alpine-ssh",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "qemu-startup",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "raman-fitting",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "regex-chess",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "regex-log",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "sparql-university",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "sqlite-with-gcov",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "torch-pipeline-parallelism",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "torch-tensor-parallelism",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "vulnerable-secret",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "write-compressor",
+      "recorded_status": "invalid",
+      "infrastructure_error": "harbor did not produce a trial result",
+      "reason_category": "missing_trial",
+      "failure_message": "Verifier infrastructure error: harbor did not produce a trial result",
+      "attempt_count": 1
+    }
+  ]
+}

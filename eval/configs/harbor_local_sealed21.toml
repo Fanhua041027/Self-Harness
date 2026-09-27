@@ -1,0 +1,119 @@
+[eval]
+name = "tb2-sealed21"
+runner = "harbor_cli"
+model = "${SELF_HARNESS_MODEL}"
+repeats = 2
+evals_project = "../.."
+harness_workspace = "../harness_workspace"
+task_root = "${SELF_HARNESS_TB2_ROOT}"
+agent_import_path = "self_harness_harbor.harbor_wrapper:FixedHarnessWrapper"
+environment = "docker"
+agent_kwargs = ["hard_timeout_sec=1800"]
+case_concurrency = 4
+timeout_s = 3000
+infrastructure_retries = 2
+
+[[cases]]
+case_id = "adaptive-rejection-sampler"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "chess-best-move"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "circuit-fibsqrt"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "compile-compcert"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "configure-git-webserver"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "crack-7z-hash"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "fix-code-vulnerability"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "fix-ocaml-gc"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "gpt2-codegolf"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "hf-model-inference"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "install-windows-3.11"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "mteb-leaderboard"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "mteb-retrieve"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "portfolio-optimization"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "pytorch-model-recovery"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "query-optimize"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "reshard-c4-data"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "sanitize-git-repo"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "schemelike-metacircular-eval"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "train-fasttext"
+split = "sealed"
+stratum = "sealed21"
+
+[[cases]]
+case_id = "winning-avg-corewars"
+split = "sealed"
+stratum = "sealed21"

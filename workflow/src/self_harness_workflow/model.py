@@ -37,9 +37,12 @@ class ModelSpec:
 
     def fingerprint(self, base_url: str) -> str:
         parsed = urllib.parse.urlsplit(base_url)
-        endpoint = f"{parsed.scheme.lower()}://{(parsed.hostname or '').lower()}"
+        path = parsed.path or "/"
+        if path != "/":
+            path = "/" + path.strip("/")
+        endpoint = f"{parsed.scheme.lower()}://{(parsed.hostname or '').lower()}{path}"
         if parsed.port:
-            endpoint += f":{parsed.port}"
+            endpoint = f"{parsed.scheme.lower()}://{(parsed.hostname or '').lower()}:{parsed.port}{path}"
         return hashlib.sha256(_canonical_json({**asdict(self), "endpoint": endpoint})).hexdigest()
 
 
