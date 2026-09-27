@@ -5,6 +5,8 @@ import argparse
 import json
 import os
 import re
+import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 
@@ -21,7 +23,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--model", default=os.environ.get("SELF_HARNESS_MODEL"))
     parser.add_argument("--timeout-s", type=float, default=180.0)
+    parser.add_argument("--concurrency", type=int, default=4, help="parallel diagnosis calls (default 4)")
     args = parser.parse_args(argv)
+    if args.concurrency < 1:
+        raise RuntimeError("--concurrency must be >= 1")
 
     if not args.model:
         raise RuntimeError("--model or SELF_HARNESS_MODEL is required")
@@ -43,11 +48,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     diagnosis_dir = args.output.resolve().parent / "diagnoses"
     diagnoses: dict[str, dict[str, Any]] = {}
-    for outcome in outcomes:
-        if outcome.passed:
-            continue
+
+    def diagnose_one(outcome: DiagnosisOutcome) -> tuple[str, DiagnosisOutcome, dict[str, Any]] | None:
+        if outcome.passed or outcome.status == "invalid":
+            # Infrastructure timeout, not an Evolution failure; excluded from failure mining.
+            return None
         if not outcome.messages_path:
-            raise RuntimeError(f"failed case has no messages_path: {outcome.case_id}")
+            print(f"WARNING: skip diagnosis for {outcome.case_id}: no messages_path", file=sys.stderr)
+            return None
         messages_path = Path(outcome.messages_path).resolve()
         messages = read_json_list(messages_path)
         payload = {
@@ -57,16 +65,40 @@ def main(argv: list[str] | None = None) -> int:
             "outputs": {"messages": messages},
             "verifier_evidence": load_tb2_verifier_evidence(messages_path=messages_path),
         }
-        diagnosis = build_causal_trace_diagnosis(
-            payload,
-            llm=llm,
-            config=DiagnosisConfig(model_reference=args.model, timeout_s=args.timeout_s, retries=2, strict=True),
-            source_trace_path=messages_path,
-        )
+        try:
+            diagnosis = build_causal_trace_diagnosis(
+                payload,
+                llm=llm,
+                config=DiagnosisConfig(model_reference=args.model, timeout_s=args.timeout_s, retries=2, strict=True),
+                source_trace_path=messages_path,
+            )
+        except Exception as exc:
+            print(f"WARNING: skip diagnosis for {outcome.case_id}: {exc!r}", file=sys.stderr)
+            return None
         if diagnosis is None:
-            raise RuntimeError(f"diagnosis unexpectedly skipped failed case: {outcome.case_id}")
-        diagnoses[str(messages_path)] = diagnosis
-        write_json(diagnosis_dir / f"{safe_slug(outcome.case_id)}.json", diagnosis)
+            print(f"WARNING: skip diagnosis for {outcome.case_id}: empty analysis", file=sys.stderr)
+            return None
+        return str(messages_path), outcome, diagnosis
+
+    targets = [outcome for outcome in outcomes if not outcome.passed and outcome.status != "invalid"]
+    if args.concurrency > 1 and len(targets) > 1:
+        with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
+            futures = [executor.submit(diagnose_one, outcome) for outcome in targets]
+            for future in as_completed(futures):
+                item = future.result()  # propagate errors from any worker
+                if item is None:
+                    continue
+                messages_key, outcome, diagnosis = item
+                diagnoses[messages_key] = diagnosis
+                write_json(diagnosis_dir / f"{safe_slug(outcome.case_id)}.json", diagnosis)
+    else:
+        for outcome in targets:
+            item = diagnose_one(outcome)
+            if item is None:
+                continue
+            messages_key, outcome, diagnosis = item
+            diagnoses[messages_key] = diagnosis
+            write_json(diagnosis_dir / f"{safe_slug(outcome.case_id)}.json", diagnosis)
 
     write_verifier_causal_brief(
         outcomes=outcomes,

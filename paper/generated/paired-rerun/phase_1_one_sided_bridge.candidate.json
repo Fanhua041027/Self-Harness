@@ -1,0 +1,37 @@
+{
+  "format": "self_harness.rerun_cell_manifest.v3",
+  "phase": "phase_1_one_sided_bridge",
+  "side": "candidate",
+  "baseline_result": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-baseline\\result.json",
+  "baseline_result_sha256": "bdbcdf0ac465281878eed804320476f1c57184b37195dbd5989c425e002e68a0",
+  "candidate_result": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-self-harness\\branches\\baseline\\candidates\\anti_workaround_execution\\eval\\result.json",
+  "candidate_result_sha256": "ae6c20c2a6a386e0da569c130bd01b9df4cda090cce4ed5320b28a4abb1c4cbb",
+  "source_hashes_stable": true,
+  "cells": [
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "break-filter-js-from-html"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "filter-js-from-html"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "break-filter-js-from-html"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "log-summary-date-ranges"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "mailman"
+    }
+  ]
+}

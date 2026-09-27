@@ -4,6 +4,7 @@ import ast
 import hashlib
 import json
 from dataclasses import dataclass
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
@@ -53,7 +54,14 @@ def validate_candidate_edit(
         raise ValueError("candidate must change one file and one declared surface")
     added_chars = max(0, len(after) - len(before))
     before_lines, after_lines = before.splitlines(), after.splitlines()
-    changed_lines = sum(a != b for a, b in zip(before_lines, after_lines)) + abs(len(before_lines) - len(after_lines))
+    # Count actual changed lines via edit distance, not positional zip (which
+    # overcounts every line that shifts after an insertion/deletion).
+    matcher = SequenceMatcher(None, before_lines, after_lines)
+    changed_lines = sum(
+        len(range(a, b)) + len(range(c, d))
+        for tag, a, b, c, d in matcher.get_opcodes()
+        if tag != "equal"
+    )
     try:
         ast_delta = max(0, sum(1 for _ in ast.walk(ast.parse(after))) - sum(1 for _ in ast.walk(ast.parse(before))))
     except SyntaxError as exc:

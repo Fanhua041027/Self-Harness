@@ -1,0 +1,377 @@
+{
+  "format": "self_harness.rerun_cell_manifest.v3",
+  "phase": "phase_2_both_sides_missing",
+  "side": "baseline",
+  "baseline_result": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-baseline\\result.json",
+  "baseline_result_sha256": "bdbcdf0ac465281878eed804320476f1c57184b37195dbd5989c425e002e68a0",
+  "candidate_result": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\clean64-qwen-self-harness\\branches\\baseline\\candidates\\anti_workaround_execution\\eval\\result.json",
+  "candidate_result_sha256": "ae6c20c2a6a386e0da569c130bd01b9df4cda090cce4ed5320b28a4abb1c4cbb",
+  "source_hashes_stable": true,
+  "cells": [
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "dna-assembly"
+    },
+    {
+      "split": "heldout",
+      "repeat": 1,
+      "case_id": "path-tracing-reverse"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "dna-assembly"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "extract-moves-from-video"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "feal-linear-cryptanalysis"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "filter-js-from-html"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "largest-eigenval"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "path-tracing-reverse"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "pytorch-model-cli"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "rstan-to-pystan"
+    },
+    {
+      "split": "heldout",
+      "repeat": 2,
+      "case_id": "tune-mjcf"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "build-cython-ext"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "caffe-cifar-10"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "dna-insert"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "feal-differential-cryptanalysis"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "gcode-to-text"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "llm-inference-batching-scheduler"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "make-doom-for-mips"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "mcmc-sampling-stan"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "path-tracing"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "polyglot-rust-c"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "protein-assembly"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "qemu-startup"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "raman-fitting"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "regex-chess"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "regex-log"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "sparql-university"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "sqlite-with-gcov"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "torch-pipeline-parallelism"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "torch-tensor-parallelism"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "vulnerable-secret"
+    },
+    {
+      "split": "train",
+      "repeat": 1,
+      "case_id": "write-compressor"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "bn-fit-modify"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-cython-ext"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-pmars"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "build-pov-ray"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "caffe-cifar-10"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "cancel-async-tasks"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "cobol-modernization"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "constraints-scheduling"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "custom-memory-heap-crash"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "db-wal-recovery"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "dna-insert"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "extract-elf"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "feal-differential-cryptanalysis"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "fix-git"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "gcode-to-text"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "git-leak-recovery"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "llm-inference-batching-scheduler"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "make-doom-for-mips"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "mcmc-sampling-stan"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "merge-diff-arc-agi-task"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "model-extraction-relu-logits"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "multi-source-data-merger"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "nginx-request-logging"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "overfull-hbox"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "password-recovery"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "path-tracing"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "polyglot-c-py"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "polyglot-rust-c"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "protein-assembly"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "prove-plus-comm"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "qemu-alpine-ssh"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "qemu-startup"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "raman-fitting"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "regex-chess"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "regex-log"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "sparql-university"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "sqlite-with-gcov"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "torch-pipeline-parallelism"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "torch-tensor-parallelism"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "vulnerable-secret"
+    },
+    {
+      "split": "train",
+      "repeat": 2,
+      "case_id": "write-compressor"
+    }
+  ]
+}

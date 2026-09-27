@@ -1,0 +1,593 @@
+{
+  "format": "self_harness.split_coverage_audit.v1",
+  "outcome_blind": true,
+  "task_accounting": {
+    "universe": 89,
+    "clean_train": 43,
+    "clean_heldout": 21,
+    "clean64": 64,
+    "sealed21": 21,
+    "excluded_media": 4,
+    "all_accounted_for": true,
+    "clean_sealed_overlap": 0
+  },
+  "counts": {
+    "clean_train": {
+      "category": {
+        "data-processing": 3,
+        "data-querying": 1,
+        "data-science": 1,
+        "debugging": 4,
+        "file-operations": 3,
+        "machine-learning": 2,
+        "mathematics": 2,
+        "personal-assistant": 1,
+        "scientific-computing": 4,
+        "security": 2,
+        "software-engineering": 15,
+        "system-administration": 5
+      },
+      "difficulty": {
+        "easy": 4,
+        "hard": 16,
+        "medium": 23
+      }
+    },
+    "clean_heldout": {
+      "category": {
+        "data-science": 1,
+        "debugging": 1,
+        "file-operations": 2,
+        "machine-learning": 1,
+        "mathematics": 2,
+        "model-training": 2,
+        "scientific-computing": 3,
+        "security": 3,
+        "software-engineering": 5,
+        "system-administration": 1
+      },
+      "difficulty": {
+        "hard": 5,
+        "medium": 16
+      }
+    },
+    "clean64": {
+      "category": {
+        "data-processing": 3,
+        "data-querying": 1,
+        "data-science": 2,
+        "debugging": 5,
+        "file-operations": 5,
+        "machine-learning": 3,
+        "mathematics": 4,
+        "model-training": 2,
+        "personal-assistant": 1,
+        "scientific-computing": 7,
+        "security": 5,
+        "software-engineering": 20,
+        "system-administration": 6
+      },
+      "difficulty": {
+        "easy": 4,
+        "hard": 21,
+        "medium": 39
+      }
+    },
+    "sealed21": {
+      "category": {
+        "data-science": 5,
+        "games": 1,
+        "model-training": 2,
+        "optimization": 1,
+        "scientific-computing": 1,
+        "security": 3,
+        "software-engineering": 5,
+        "system-administration": 3
+      },
+      "difficulty": {
+        "hard": 7,
+        "medium": 14
+      }
+    },
+    "excluded_media": {
+      "category": {
+        "data-processing": 1,
+        "data-science": 1,
+        "software-engineering": 1,
+        "video-processing": 1
+      },
+      "difficulty": {
+        "hard": 2,
+        "medium": 2
+      }
+    }
+  },
+  "clean64_vs_sealed21": {
+    "category": {
+      "total_variation": 0.4799107142857143,
+      "jensen_shannon_bits": 0.3199471011234494
+    },
+    "difficulty": {
+      "total_variation": 0.06249999999999997,
+      "jensen_shannon_bits": 0.032192857020985066
+    },
+    "shared_categories": [
+      "data-science",
+      "model-training",
+      "scientific-computing",
+      "security",
+      "software-engineering",
+      "system-administration"
+    ],
+    "categories_missing_from_sealed": [
+      "data-processing",
+      "data-querying",
+      "debugging",
+      "file-operations",
+      "machine-learning",
+      "mathematics",
+      "personal-assistant"
+    ],
+    "categories_novel_in_sealed": [
+      "games",
+      "optimization"
+    ]
+  },
+  "source_files": [
+    {
+      "role": "clean_config",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\eval\\configs\\harbor_local_clean64.toml",
+      "sha256": "1ec7a7a7e4b5b0c59794cd0a1b34ecc1055881bdeb2f40b0da18ed0f7a594cfa"
+    },
+    {
+      "role": "sealed_manifest",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\configs\\splits\\sealed21.json",
+      "sha256": "2b3f799ec14c5c87c0d0d51e419cc9c10ad65093fa83356b7e1af773a855c760"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\adaptive-rejection-sampler\\task.toml",
+      "sha256": "4b743f614201e2df2138f70c2b6ede2478b5646801c726393cad02892d039683"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\bn-fit-modify\\task.toml",
+      "sha256": "3a464e6dbdf1fb5f20ca2ecfd0736cb06eb2a9164665cba51af70935352eb53d"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\break-filter-js-from-html\\task.toml",
+      "sha256": "5c10a564179f73c001441dc9a56cb629efac72f5828be8655697c9d2fd2dbb96"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\build-cython-ext\\task.toml",
+      "sha256": "eb6bfabb7b75243c3f4d127a10c4c349d44e7e5b7bffb428edebd467adc43843"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\build-pmars\\task.toml",
+      "sha256": "02de864f98eaba9d3b9fe2b65e36ec32a824a1cd85b9b5246caf70de222d48ac"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\build-pov-ray\\task.toml",
+      "sha256": "a753f99e0c7bcec14324bfb26919004c357d061caaaea1b480b9690a8b580760"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\caffe-cifar-10\\task.toml",
+      "sha256": "bd3b974958ae52e3d3b399fa8b6c2fbc4e9e0e039f20c96851f1d1a0049084bc"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\cancel-async-tasks\\task.toml",
+      "sha256": "4eb6fe419024e101c630f3ee7702df67049851ae13ebed00ea4138b62dec47b2"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\chess-best-move\\task.toml",
+      "sha256": "d02acae26d6238e2c05d34424258a2053f076eb88d31703348d3ac3403f963ef"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\circuit-fibsqrt\\task.toml",
+      "sha256": "8048b18763a15de16bceda741f3beca43b56c111eaaea48254e053ebb03dc851"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\cobol-modernization\\task.toml",
+      "sha256": "a08e001d2547fe84f64452bb075d27603aed7abfc01799f80924f81e6f2af410"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\code-from-image\\task.toml",
+      "sha256": "ccaeb57fa92193f2256f924b32d5c4281e573ae449ef29e44d5e9cba84ef6fca"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\compile-compcert\\task.toml",
+      "sha256": "581a6b17e4aa16406379cfa7e005c7df4ddabbd80c9a65eeb95ea143754a0e7b"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\configure-git-webserver\\task.toml",
+      "sha256": "ae983718634fb47c8280aa6aacd9b645e35f8e88a6d1deb8b8e676aec4ee87f3"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\constraints-scheduling\\task.toml",
+      "sha256": "db3d457bcae683d1d0dab33f2a059da9ef30beaa08271d766fae09d1c0054c83"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\count-dataset-tokens\\task.toml",
+      "sha256": "4b0ac21243a9a578810bc826dd8f0db9202b5ca98a39d718864375fd2c76b498"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\crack-7z-hash\\task.toml",
+      "sha256": "431655d1681325e7a768d64f1425fdc3efa7a345cd69d265bcf1bd8811210906"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\custom-memory-heap-crash\\task.toml",
+      "sha256": "7642b99bb9af870eeefa26e21681a7308b5b4fb9eb249a4255019a6da40cb6c1"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\db-wal-recovery\\task.toml",
+      "sha256": "2ff8fa659f95fd16932114f50d16c44229ffeb05f116c6f9e0c7b6b376e087e2"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\distribution-search\\task.toml",
+      "sha256": "0f88879d8f3067f8bf4b5361eca83ec454d7a95fd0224d7d014399a52674deff"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\dna-assembly\\task.toml",
+      "sha256": "316bb430c1c09cd74bbe0c226f53377371317c4279e394dacf3edc7f5f096bc4"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\dna-insert\\task.toml",
+      "sha256": "c3e47f205b39b34c9f71cd0f3ce62d810abaa591436c30c4fb3f03349a42dde5"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\extract-elf\\task.toml",
+      "sha256": "72c2a3524622ab87d024b422e00174b6530b02e0d586ccd2f260820a486338a0"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\extract-moves-from-video\\task.toml",
+      "sha256": "155a4378b4effd231bd8b4e13024a521fc2c38fba6e53036173641610060b5ed"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\feal-differential-cryptanalysis\\task.toml",
+      "sha256": "ee8a09c98c52c5598f44a1aa8908ac2d8bdae1c3ce6a5672a599cf21fc1e5fc5"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\feal-linear-cryptanalysis\\task.toml",
+      "sha256": "bc0732054a35a1153ea30fd75d2ed8c4684ac10dd4716f9253f62f2fc012746f"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\filter-js-from-html\\task.toml",
+      "sha256": "44e7a7f84eb1c603b54abd948f5e72205aa51bbb3dbbecdaabefebb59803515b"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\financial-document-processor\\task.toml",
+      "sha256": "f667f368cd55dc12cfbe69d3cf335458341e9f1ff4d9f191cd474eb37db5ab5d"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\fix-code-vulnerability\\task.toml",
+      "sha256": "495ee049055867fb5e14a7fcab5c1488941825be2f84eac29851b886b9b8de93"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\fix-git\\task.toml",
+      "sha256": "65ed15b71751a10df66cd1fba4658762156f34bacd9f7ba1688a13947d0999e6"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\fix-ocaml-gc\\task.toml",
+      "sha256": "665a572ee3b3b4f22f5954df304ea8fde4d57e1e9dd24b717b030a7b0f1e9483"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\gcode-to-text\\task.toml",
+      "sha256": "e816483601f36d4fa37324203d2e4716f524dd50d516e4e787ea993a7d9b68f2"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\git-leak-recovery\\task.toml",
+      "sha256": "6c3d6204e561ae9d9757bbc6b7f5a4ed3f94db4a0ce82037d9084644e1cf0c7f"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\git-multibranch\\task.toml",
+      "sha256": "6b4ebf49a9ece91b7c8161917a9ac6ec91d00aea9d01dc7695b7a4a5fb3eed5b"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\gpt2-codegolf\\task.toml",
+      "sha256": "1271d2225fb3651d8e4e2c3d2c7c6d07d074970f1393233150730ac8199974c8"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\headless-terminal\\task.toml",
+      "sha256": "4d1448e9d3d0ef2043b6b888361a55e609a9ab8b07f4aca44c0ee870b2049c7e"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\hf-model-inference\\task.toml",
+      "sha256": "689b6d326e3cc884f5b406a25072e8dbb011d6bda566d222734ce2fa843244fa"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\install-windows-3.11\\task.toml",
+      "sha256": "392a6966f24744ee949dfa0eb2b7058e76771ba6e955b20c5808c2d8287f7d90"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\kv-store-grpc\\task.toml",
+      "sha256": "b93d343ae7dd483b15d3b846fd6c13f136a279143e840d83beb521772f4c208d"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\large-scale-text-editing\\task.toml",
+      "sha256": "24ea9cfe0b365afb9d45b998f02102b53d9e021a4fbd8f64dad0c14596caacf1"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\largest-eigenval\\task.toml",
+      "sha256": "878776ae4fc26e4f7ddc6313c9518e5e264abbadc1df90f09b5e199b176243db"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\llm-inference-batching-scheduler\\task.toml",
+      "sha256": "bad604d2617cbaef8d184f69553263f2ee8a007180ee2e4f6af4ff495afb2e7e"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\log-summary-date-ranges\\task.toml",
+      "sha256": "6d52ee3cd752b917e290d0cbbc99ae856ce7e851169b9cd9bb0c332404bc6873"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\mailman\\task.toml",
+      "sha256": "36019339824f0617db57a999931e88cd1be29258f7fffa2f131b5a705531adb3"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\make-doom-for-mips\\task.toml",
+      "sha256": "c9f3a979796e64c64f38606ac1168b2e31993e835c232c24840ad9b88bb24e16"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\make-mips-interpreter\\task.toml",
+      "sha256": "4b3356a0e251ea92beb95710f5a972a3c1c1abc46d86eb7956d88b11076f9d33"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\mcmc-sampling-stan\\task.toml",
+      "sha256": "383a03349193c47c7a2f233384cbf6c7ec9aeda3240bc455faaa1ae7d7ad4f52"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\merge-diff-arc-agi-task\\task.toml",
+      "sha256": "32696fcfedf2df9a089b97a7fb4dcb6f757b7bb438e5bff5c8c0076ea622af3a"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\model-extraction-relu-logits\\task.toml",
+      "sha256": "4d5c33f4172062d820a5444e9b104d9118ab6a7f12652c7b30e55e79a17e8596"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\modernize-scientific-stack\\task.toml",
+      "sha256": "73e171f42ee5631d5e45ab48149934b98c9952ade191a0bf786047fd28ac7c52"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\mteb-leaderboard\\task.toml",
+      "sha256": "030019d070f7bf1d3747685fa44cf6bfb4576e2ec52f8470221c3b152165ab44"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\mteb-retrieve\\task.toml",
+      "sha256": "3030503ebf238612af70b6748d306d134ebe3089d0cf1defd5d8034d64789193"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\multi-source-data-merger\\task.toml",
+      "sha256": "fc843176948791287d9d9cb0d31b1da0b4e5734d2c68b8d3746ceab5abdc559a"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\nginx-request-logging\\task.toml",
+      "sha256": "f41393eea6490092669c0a6abcb3087b751e933d1182fb04471fc56495aeb377"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\openssl-selfsigned-cert\\task.toml",
+      "sha256": "c3db93a3f924a942490f93b87e2bc9045a15a7a296f3de38ac795576ebe77947"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\overfull-hbox\\task.toml",
+      "sha256": "d24390ba221061b27cd05ef37504614cb76a489956640a3a74a3d7e773c5518b"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\password-recovery\\task.toml",
+      "sha256": "043b4b0dbd3849491c15a2d8bc2146ca8cabee34a69712f6c1f294f8b52689de"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\path-tracing\\task.toml",
+      "sha256": "016873f8804418c8bd20bbba314c0ebdc304ad0beb621df07bb0ad6e5d721fdf"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\path-tracing-reverse\\task.toml",
+      "sha256": "595d0926686b5aaa2242e197bc92fc115a82baa0eb3d0e60498453c87ea9eb3f"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\polyglot-c-py\\task.toml",
+      "sha256": "02c98637eba6754d556594f679404ba5ac282436d089f53d1c839b17eff9c710"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\polyglot-rust-c\\task.toml",
+      "sha256": "5f48e6114d1296eee5303a8ab5286b49a48df9e322147a9d939b8e60dd7b1343"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\portfolio-optimization\\task.toml",
+      "sha256": "ec79b1c5712b30dc50c2739a7c19391014d160c270276c0fc6579d33d4d133ed"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\protein-assembly\\task.toml",
+      "sha256": "6004ee49220b9b13c974edb062b7796adc7555e28e80f39937664b0d3e6de429"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\prove-plus-comm\\task.toml",
+      "sha256": "172e580e56eb604d970a3f763d7cac86ce42047d270db970f7274eb9f64334bb"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\pypi-server\\task.toml",
+      "sha256": "e82d539a1e56fa080f9a12bc723eef047220af4425c7f18d88e1ee9a3466c473"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\pytorch-model-cli\\task.toml",
+      "sha256": "e4b97209362932ff621a40ec33fc82e9bbb1b4bb40b635fe1e476a6cb83354bd"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\pytorch-model-recovery\\task.toml",
+      "sha256": "b963c8b3ca627ec38b6934dc9a93373678cd5b0e85800efa3d431f937c87b6e5"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\qemu-alpine-ssh\\task.toml",
+      "sha256": "b11c5f50abfd204436edc0d9721c4a181a34e1f644550eaa22fd06ac8b9957f3"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\qemu-startup\\task.toml",
+      "sha256": "d6e67042864b1438afd3e280f5114f3fa05a87aa64c549c7028e8a8d8c6ce305"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\query-optimize\\task.toml",
+      "sha256": "f596916d1fc10769e1cc82e2df0957952ff82736f935c742b15f4daee7258f19"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\raman-fitting\\task.toml",
+      "sha256": "6af8b47940032e643b9529c1d1d467e55efa1315981505cc1b0a1c1323e67e0a"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\regex-chess\\task.toml",
+      "sha256": "faa8887ea3c3d516b16e066143be554d3d214b9a326462ac08f677568cbb25ce"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\regex-log\\task.toml",
+      "sha256": "cbffabfe62b495480b06a8a34dfa3b11bd5a86ff20b0c82a1406491b6f50665c"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\reshard-c4-data\\task.toml",
+      "sha256": "4b3076bfb05e29290ca07e260c08707d5bd22fbd4f867e845a9744b7b8bac8a2"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\rstan-to-pystan\\task.toml",
+      "sha256": "a9af1f9dab8e3135e3745e47dd1d18362a929da486e298c58ff682415d179066"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\sam-cell-seg\\task.toml",
+      "sha256": "0479c1bfb2230a6bd205b11209163a798a69bb47a6d7eb8f4ae21d4d72c3efee"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\sanitize-git-repo\\task.toml",
+      "sha256": "2c0d32f42e8b534136a958f47e99c8e5097bec6d1f2a3edadb48c45f217a6306"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\schemelike-metacircular-eval\\task.toml",
+      "sha256": "84b3ea218c02a0e57816fddf14b16ee83d7df8d39bc3bb3156eb3b1201c5033c"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\sparql-university\\task.toml",
+      "sha256": "21a45de8a465d331d2bfbe2335c07315789f9b26f330bb74d768b223f34a494b"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\sqlite-db-truncate\\task.toml",
+      "sha256": "8b4c4d2abfe7dc8b7a3bac4567f60c08f7a9219b2cc65df0de7c5ee3d37721d6"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\sqlite-with-gcov\\task.toml",
+      "sha256": "c89c54063da95760d87ee251f0b4a8d9e6cf17f273e3b9da57d3c67780b63be4"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\torch-pipeline-parallelism\\task.toml",
+      "sha256": "e88d3f1422a594c5fedac69ffde0be35019bf90f2c6aa1ee7cedec2403688b59"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\torch-tensor-parallelism\\task.toml",
+      "sha256": "60720f55f91254706ff01852d20d579d564ae471204c9eaeb09294d4c322ae9f"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\train-fasttext\\task.toml",
+      "sha256": "b1a39378c96e6971a5583a713a4f84782c3535fe889f0916198f971c9b844153"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\tune-mjcf\\task.toml",
+      "sha256": "d4e30696370fdbbbc12f1f7a2d0e34a8cf215d5b6f42a0e6e3fa6338c2309bfc"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\video-processing\\task.toml",
+      "sha256": "49e4a92b9b04a3dd12ac1f0818e75574128d2b981f7b7e4c3707f7781933b805"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\vulnerable-secret\\task.toml",
+      "sha256": "f6859a220d8c5072b51f1b2e31d8b5b26f5c15ec53704f669c00b25be0c3f035"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\winning-avg-corewars\\task.toml",
+      "sha256": "f63017781e8a02275be923b47069cdabc4e74ab6ffd63d33c57cb98f9620c99d"
+    },
+    {
+      "role": "task_metadata",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\runs\\terminal-bench-2-reliable-v2\\write-compressor\\task.toml",
+      "sha256": "2882cad36270e4291b672620469a7619a9c80a624f8f85703b9a43eeca9fccb2"
+    }
+  ]
+}

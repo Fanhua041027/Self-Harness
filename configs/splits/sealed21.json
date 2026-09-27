@@ -1,0 +1,190 @@
+{
+  "classification": "frozen-before-sealed-evaluation",
+  "clean_case_ids_sha256": "87f1897e4e65cc4528eba20ca1b194edee92331eba178ef1873efe21c51a6b8c",
+  "clean_config": "eval/configs/harbor_local_clean64.toml",
+  "excluded_unused_tasks": [
+    {
+      "case_id": "code-from-image",
+      "extensions": [
+        ".png"
+      ],
+      "reason": "local_media_input"
+    },
+    {
+      "case_id": "financial-document-processor",
+      "extensions": [
+        ".jpg",
+        ".pdf"
+      ],
+      "reason": "local_media_input"
+    },
+    {
+      "case_id": "sam-cell-seg",
+      "extensions": [
+        ".png"
+      ],
+      "reason": "local_media_input"
+    },
+    {
+      "case_id": "video-processing",
+      "extensions": [
+        ".mp4"
+      ],
+      "reason": "local_media_input"
+    }
+  ],
+  "format": "self_harness.sealed_split.v1",
+  "prior_result_references": 0,
+  "selection_rule": {
+    "exclude_clean64": true,
+    "exclude_local_media_extensions": [
+      ".avi",
+      ".bmp",
+      ".gif",
+      ".jpeg",
+      ".jpg",
+      ".mkv",
+      ".mov",
+      ".mp3",
+      ".mp4",
+      ".pdf",
+      ".png",
+      ".tiff",
+      ".wav",
+      ".webm",
+      ".webp"
+    ],
+    "outcome_blind": true,
+    "universe": "directories in terminal-bench-2-reliable-v2"
+  },
+  "task_count": 21,
+  "task_root": "runs/terminal-bench-2-reliable-v2",
+  "tasks": [
+    {
+      "case_id": "adaptive-rejection-sampler",
+      "category": "scientific-computing",
+      "difficulty": "medium",
+      "task_sha256": "a7af8d16ecd92d25284e8dda419217182cf78fc6200e5c83d4da54561e555b31"
+    },
+    {
+      "case_id": "chess-best-move",
+      "category": "games",
+      "difficulty": "medium",
+      "task_sha256": "465db577b8821de28629d8502945dc5cd6a800bce9ae816b16d12ec05578e9f1"
+    },
+    {
+      "case_id": "circuit-fibsqrt",
+      "category": "software-engineering",
+      "difficulty": "hard",
+      "task_sha256": "601044b1ed72a8027999cf8c6bb43deaefec1bbc96685004d60bbd1635962d2c"
+    },
+    {
+      "case_id": "compile-compcert",
+      "category": "system-administration",
+      "difficulty": "medium",
+      "task_sha256": "911dd59912b2c7025fea2c829177a4e64e54f06322441c9709b109267b541be9"
+    },
+    {
+      "case_id": "configure-git-webserver",
+      "category": "system-administration",
+      "difficulty": "hard",
+      "task_sha256": "d86f8e835b36c8b4c5c0b4bac8cba86fce8056256234e9df644934f1588c7c4b"
+    },
+    {
+      "case_id": "crack-7z-hash",
+      "category": "security",
+      "difficulty": "medium",
+      "task_sha256": "6a1e168d29895c5037ecfb0dc215cddb8f9621c2ff57c3807e7c517a8e86faa8"
+    },
+    {
+      "case_id": "fix-code-vulnerability",
+      "category": "security",
+      "difficulty": "hard",
+      "task_sha256": "9da75e8e0325d641954f87d8f109ecf856573ac8534bb6be7c0c60a373773d9e"
+    },
+    {
+      "case_id": "fix-ocaml-gc",
+      "category": "software-engineering",
+      "difficulty": "hard",
+      "task_sha256": "cbdd1135ed829acf004744acdd4e629aded3e6d467cc11ceb1c530f11b5ec91f"
+    },
+    {
+      "case_id": "gpt2-codegolf",
+      "category": "software-engineering",
+      "difficulty": "hard",
+      "task_sha256": "90b43a071bb5f3d628c23602732481caafbea9f29f50eab24b735c3baa3d6a9f"
+    },
+    {
+      "case_id": "hf-model-inference",
+      "category": "data-science",
+      "difficulty": "medium",
+      "task_sha256": "32be3843c5b85057e7c652dc0113522b3dbb5aed94ac1635a9a61aeab1b08ab5"
+    },
+    {
+      "case_id": "install-windows-3.11",
+      "category": "system-administration",
+      "difficulty": "hard",
+      "task_sha256": "02adfebcd507ff45a340af43d9ba58cba9d260d1f466ca191a2ac5fee27c997f"
+    },
+    {
+      "case_id": "mteb-leaderboard",
+      "category": "data-science",
+      "difficulty": "medium",
+      "task_sha256": "037a6baec595a82f54ac4bc6dcddd165696b487f1900d5b3c36507220e68d983"
+    },
+    {
+      "case_id": "mteb-retrieve",
+      "category": "data-science",
+      "difficulty": "medium",
+      "task_sha256": "7650f857ef2825741415d706c2d18444d43cb0c39b808eb427a5e493c678bbb1"
+    },
+    {
+      "case_id": "portfolio-optimization",
+      "category": "optimization",
+      "difficulty": "medium",
+      "task_sha256": "8970c2df98c3d9d5529f2fa697a09c7f5ad984f0bfcad199ee9530f3461e0a93"
+    },
+    {
+      "case_id": "pytorch-model-recovery",
+      "category": "model-training",
+      "difficulty": "medium",
+      "task_sha256": "eeafd2f2d8ade4f874ee0dea20f6b7c12ae10880a6ff241e3edc2a6da535a446"
+    },
+    {
+      "case_id": "query-optimize",
+      "category": "data-science",
+      "difficulty": "medium",
+      "task_sha256": "bb072d7a358c85e339ac06ecc567402a33a2abc4172d1f6cb40b6f25c6e262dc"
+    },
+    {
+      "case_id": "reshard-c4-data",
+      "category": "data-science",
+      "difficulty": "medium",
+      "task_sha256": "a988cd8b59cd4648e9264ee28d347a5f91b23fd5aa7fd049a410d303753e33c8"
+    },
+    {
+      "case_id": "sanitize-git-repo",
+      "category": "security",
+      "difficulty": "medium",
+      "task_sha256": "6a9145e1213896d293509282a287a5bc3dd6f6dabc5fbb6ff98cf04e3d70d49f"
+    },
+    {
+      "case_id": "schemelike-metacircular-eval",
+      "category": "software-engineering",
+      "difficulty": "medium",
+      "task_sha256": "dead3c031ba45e63e2fedd44bbfdac43e911a2640d695476c8e3cac5c89fd49e"
+    },
+    {
+      "case_id": "train-fasttext",
+      "category": "model-training",
+      "difficulty": "hard",
+      "task_sha256": "b121c07c69c21ca0d69c9a1b911323694c4cfe8aab464cb5fe119af386193204"
+    },
+    {
+      "case_id": "winning-avg-corewars",
+      "category": "software-engineering",
+      "difficulty": "medium",
+      "task_sha256": "d3d50d81e67fa9c0afee4c3a765f28a37a0b15c9db3a5ca07bf557a0f56c4c92"
+    }
+  ]
+}

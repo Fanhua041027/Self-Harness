@@ -1,0 +1,221 @@
+{
+  "format": "self_harness.confirmation_design_audit.v1",
+  "outcome_blind": true,
+  "tasks": 21,
+  "repeats_per_task": 2,
+  "bootstrap_samples": 20000,
+  "bootstrap_seed": 20260812,
+  "bootstrap_percentile_method": "linear interpolation on sorted samples, q*(n-1) (Hyndman-Fan type 7)",
+  "primary_endpoint_alpha": 0.05,
+  "primary_success_rule": "delta > 0, 95% CI lower bound > 0, and p < 0.05",
+  "canonical_pattern": "k task clusters each contain one fail-to-pass repeat and one unchanged failed repeat; all other task clusters are unchanged failures",
+  "smallest_exact_two_sided_p": 9.5367431640625e-07,
+  "minimum_canonical_success": {
+    "favorable_task_clusters": 6,
+    "attempt_level_delta": 0.14285714285714285,
+    "cluster_bootstrap_ci_low": 0.047619047619047616,
+    "cluster_bootstrap_ci_high": 0.23809523809523808,
+    "exact_task_permutation_p": 0.03125,
+    "meets_success_rule": true
+  },
+  "rows": [
+    {
+      "favorable_task_clusters": 0,
+      "attempt_level_delta": 0.0,
+      "cluster_bootstrap_ci_low": 0.0,
+      "cluster_bootstrap_ci_high": 0.0,
+      "exact_task_permutation_p": 1.0,
+      "meets_success_rule": false
+    },
+    {
+      "favorable_task_clusters": 1,
+      "attempt_level_delta": 0.023809523809523808,
+      "cluster_bootstrap_ci_low": 0.0,
+      "cluster_bootstrap_ci_high": 0.07142857142857142,
+      "exact_task_permutation_p": 1.0,
+      "meets_success_rule": false
+    },
+    {
+      "favorable_task_clusters": 2,
+      "attempt_level_delta": 0.047619047619047616,
+      "cluster_bootstrap_ci_low": 0.0,
+      "cluster_bootstrap_ci_high": 0.11904761904761904,
+      "exact_task_permutation_p": 0.5,
+      "meets_success_rule": false
+    },
+    {
+      "favorable_task_clusters": 3,
+      "attempt_level_delta": 0.07142857142857142,
+      "cluster_bootstrap_ci_low": 0.0,
+      "cluster_bootstrap_ci_high": 0.14285714285714285,
+      "exact_task_permutation_p": 0.25,
+      "meets_success_rule": false
+    },
+    {
+      "favorable_task_clusters": 4,
+      "attempt_level_delta": 0.09523809523809523,
+      "cluster_bootstrap_ci_low": 0.023809523809523808,
+      "cluster_bootstrap_ci_high": 0.19047619047619047,
+      "exact_task_permutation_p": 0.125,
+      "meets_success_rule": false
+    },
+    {
+      "favorable_task_clusters": 5,
+      "attempt_level_delta": 0.11904761904761904,
+      "cluster_bootstrap_ci_low": 0.023809523809523808,
+      "cluster_bootstrap_ci_high": 0.21428571428571427,
+      "exact_task_permutation_p": 0.0625,
+      "meets_success_rule": false
+    },
+    {
+      "favorable_task_clusters": 6,
+      "attempt_level_delta": 0.14285714285714285,
+      "cluster_bootstrap_ci_low": 0.047619047619047616,
+      "cluster_bootstrap_ci_high": 0.23809523809523808,
+      "exact_task_permutation_p": 0.03125,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 7,
+      "attempt_level_delta": 0.16666666666666666,
+      "cluster_bootstrap_ci_low": 0.07142857142857142,
+      "cluster_bootstrap_ci_high": 0.2619047619047619,
+      "exact_task_permutation_p": 0.015625,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 8,
+      "attempt_level_delta": 0.19047619047619047,
+      "cluster_bootstrap_ci_low": 0.09523809523809523,
+      "cluster_bootstrap_ci_high": 0.2857142857142857,
+      "exact_task_permutation_p": 0.0078125,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 9,
+      "attempt_level_delta": 0.21428571428571427,
+      "cluster_bootstrap_ci_low": 0.11904761904761904,
+      "cluster_bootstrap_ci_high": 0.30952380952380953,
+      "exact_task_permutation_p": 0.00390625,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 10,
+      "attempt_level_delta": 0.23809523809523808,
+      "cluster_bootstrap_ci_low": 0.14285714285714285,
+      "cluster_bootstrap_ci_high": 0.3333333333333333,
+      "exact_task_permutation_p": 0.001953125,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 11,
+      "attempt_level_delta": 0.2619047619047619,
+      "cluster_bootstrap_ci_low": 0.16666666666666666,
+      "cluster_bootstrap_ci_high": 0.35714285714285715,
+      "exact_task_permutation_p": 0.0009765625,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 12,
+      "attempt_level_delta": 0.2857142857142857,
+      "cluster_bootstrap_ci_low": 0.19047619047619047,
+      "cluster_bootstrap_ci_high": 0.38095238095238093,
+      "exact_task_permutation_p": 0.00048828125,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 13,
+      "attempt_level_delta": 0.30952380952380953,
+      "cluster_bootstrap_ci_low": 0.21428571428571427,
+      "cluster_bootstrap_ci_high": 0.40476190476190477,
+      "exact_task_permutation_p": 0.000244140625,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 14,
+      "attempt_level_delta": 0.3333333333333333,
+      "cluster_bootstrap_ci_low": 0.23809523809523808,
+      "cluster_bootstrap_ci_high": 0.42857142857142855,
+      "exact_task_permutation_p": 0.0001220703125,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 15,
+      "attempt_level_delta": 0.35714285714285715,
+      "cluster_bootstrap_ci_low": 0.2619047619047619,
+      "cluster_bootstrap_ci_high": 0.4523809523809524,
+      "exact_task_permutation_p": 6.103515625e-05,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 16,
+      "attempt_level_delta": 0.38095238095238093,
+      "cluster_bootstrap_ci_low": 0.2857142857142857,
+      "cluster_bootstrap_ci_high": 0.4523809523809524,
+      "exact_task_permutation_p": 3.0517578125e-05,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 17,
+      "attempt_level_delta": 0.40476190476190477,
+      "cluster_bootstrap_ci_low": 0.30952380952380953,
+      "cluster_bootstrap_ci_high": 0.47619047619047616,
+      "exact_task_permutation_p": 1.52587890625e-05,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 18,
+      "attempt_level_delta": 0.42857142857142855,
+      "cluster_bootstrap_ci_low": 0.35714285714285715,
+      "cluster_bootstrap_ci_high": 0.5,
+      "exact_task_permutation_p": 7.62939453125e-06,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 19,
+      "attempt_level_delta": 0.4523809523809524,
+      "cluster_bootstrap_ci_low": 0.38095238095238093,
+      "cluster_bootstrap_ci_high": 0.5,
+      "exact_task_permutation_p": 3.814697265625e-06,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 20,
+      "attempt_level_delta": 0.47619047619047616,
+      "cluster_bootstrap_ci_low": 0.42857142857142855,
+      "cluster_bootstrap_ci_high": 0.5,
+      "exact_task_permutation_p": 1.9073486328125e-06,
+      "meets_success_rule": true
+    },
+    {
+      "favorable_task_clusters": 21,
+      "attempt_level_delta": 0.5,
+      "cluster_bootstrap_ci_low": 0.5,
+      "cluster_bootstrap_ci_high": 0.5,
+      "exact_task_permutation_p": 9.5367431640625e-07,
+      "meets_success_rule": true
+    }
+  ],
+  "source_files": [
+    {
+      "role": "design_audit_script",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\paper\\audit_confirmation_design.py",
+      "sha256": "481a40772ae6f3cc09c86f085cf9045a64b628d022334f5969b3b3761b4b3199"
+    },
+    {
+      "role": "statistics_script",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\paper\\analyze_experiments.py",
+      "sha256": "219f6b14ccc9a2a958c831d877922bb2758fb8b4e5bea3d4c5d20e7141e48f29"
+    },
+    {
+      "role": "validity_script",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\eval\\scripts\\result_validity.py",
+      "sha256": "6eaf1a6de1d61117e4182ea79f8c707a7582793487250e4c9365862921c8006f"
+    },
+    {
+      "role": "preregistration",
+      "path": "C:\\Users\\29838\\Desktop\\Self-Harness\\configs\\experiments\\ei_confirmation_v1.json",
+      "sha256": "0cc8a765c790b5e33193ebb5a3c6c3431528fab019f4e822452af29a597bd101"
+    }
+  ]
+}

@@ -53,11 +53,23 @@ def build_bootstrap_instruction() -> str:
 
 
 def build_execution_instruction() -> str:
-    return "Prefer concrete repo changes over generic advice, and keep edits tightly scoped to the task."
+    return (
+        "Prefer concrete repo changes over generic advice, and keep edits tightly scoped to the task. "
+        "When a command or configuration fails, diagnose the root cause before choosing a workaround; "
+        "do not disable validation, security, routing, or repository metadata merely to make a check pass. "
+        "Preserve required metadata and interfaces, such as a .git directory when the task or verifier "
+        "expects a repository, and use the task's actual environment and requirements rather than inventing "
+        "a substitute."
+    )
 
 
 def build_verification_instruction() -> str:
-    return "Before concluding, verify the result with the most targeted command, file read, or test you can run."
+    return (
+        "Before concluding, verify the result with the most targeted command, file read, or test you can run. "
+        "Check the exact output paths and interfaces explicitly required by the task, confirm that the result "
+        "is actually written to disk, and run the relevant verifier or test when available. Do not claim success "
+        "because a plan or command was issued; inspect the resulting artifact and fix any remaining failure."
+    )
 
 
 def build_failure_recovery_instruction() -> str:

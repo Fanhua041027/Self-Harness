@@ -1,0 +1,334 @@
+[eval]
+name = "tb2-clean64-rerun"
+runner = "harbor_cli"
+model = "${SELF_HARNESS_MODEL}"
+repeats = 2
+evals_project = "../.."
+harness_workspace = "../harness_workspace"
+task_root = "${SELF_HARNESS_TB2_ROOT}"
+agent_import_path = "self_harness_harbor.harbor_wrapper:FixedHarnessWrapper"
+environment = "docker"
+agent_kwargs = ["hard_timeout_sec=3600"]
+case_concurrency = 4
+timeout_s = 3900
+infrastructure_retries = 2
+
+[[cases]]
+case_id = "bn-fit-modify"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "build-cython-ext"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "build-pmars"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "build-pov-ray"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "caffe-cifar-10"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "cancel-async-tasks"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "cobol-modernization"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "constraints-scheduling"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "custom-memory-heap-crash"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "db-wal-recovery"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "dna-insert"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "extract-elf"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "feal-differential-cryptanalysis"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "fix-git"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "gcode-to-text"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "git-leak-recovery"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "llm-inference-batching-scheduler"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "log-summary-date-ranges"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "mailman"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "make-doom-for-mips"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "mcmc-sampling-stan"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "merge-diff-arc-agi-task"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "model-extraction-relu-logits"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "multi-source-data-merger"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "nginx-request-logging"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "overfull-hbox"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "password-recovery"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "path-tracing"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "polyglot-c-py"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "polyglot-rust-c"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "protein-assembly"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "prove-plus-comm"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "qemu-alpine-ssh"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "qemu-startup"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "raman-fitting"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "regex-chess"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "regex-log"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "sparql-university"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "sqlite-with-gcov"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "torch-pipeline-parallelism"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "torch-tensor-parallelism"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "vulnerable-secret"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "write-compressor"
+split = "train"
+stratum = "clean64"
+
+[[cases]]
+case_id = "break-filter-js-from-html"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "count-dataset-tokens"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "distribution-search"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "dna-assembly"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "extract-moves-from-video"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "feal-linear-cryptanalysis"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "filter-js-from-html"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "git-multibranch"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "headless-terminal"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "kv-store-grpc"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "large-scale-text-editing"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "largest-eigenval"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "make-mips-interpreter"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "modernize-scientific-stack"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "openssl-selfsigned-cert"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "path-tracing-reverse"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "pypi-server"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "pytorch-model-cli"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "rstan-to-pystan"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "sqlite-db-truncate"
+split = "heldout"
+stratum = "clean64"
+
+[[cases]]
+case_id = "tune-mjcf"
+split = "heldout"
+stratum = "clean64"

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import ast
 import concurrent.futures
+import hashlib
 import json
 import os
 import re
@@ -16,6 +17,12 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+VALIDITY_DIR = Path(__file__).resolve().parent
+if str(VALIDITY_DIR) not in sys.path:
+    sys.path.insert(0, str(VALIDITY_DIR))
+
+from result_validity import load_json_object
 
 ENV_PATTERN = re.compile(r"\$\{([^}]+)\}")
 DEFAULT_REPEATS = 2
@@ -59,6 +66,7 @@ class Config:
     timeout_s: float | None
     env: dict[str, str]
     cases: tuple[Case, ...]
+    agent_timeout_multiplier: float | None = None
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -70,10 +78,27 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--split", action="append", help="Run only this split. May be repeated.")
     parser.add_argument("--case-concurrency", type=int, help="Override [eval].case_concurrency")
     parser.add_argument("--reuse-existing", action="store_true")
+    parser.add_argument(
+        "--run-identity",
+        help="Frozen experiment identity recorded in outputs and required for safe checkpoint reuse.",
+    )
+    parser.add_argument(
+        "--expected-config-sha256",
+        help="Reject execution unless the raw TOML configuration has this SHA256.",
+    )
     args = parser.parse_args(argv)
 
+    config_path = args.config.resolve()
+    config_sha256 = sha256_file(config_path)
+    if (
+        args.expected_config_sha256
+        and config_sha256 != args.expected_config_sha256.lower()
+    ):
+        raise RuntimeError(
+            "evaluation config SHA256 mismatch; refusing to run a changed experiment config"
+        )
     config = load_config(
-        args.config,
+        config_path,
         model_override=args.model,
         repeats_override=args.repeats,
         concurrency_override=args.case_concurrency,
@@ -81,7 +106,16 @@ def main(argv: list[str] | None = None) -> int:
     selected_splits = set(args.split or sorted({case.split for case in config.cases}))
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
-    write_json(output_dir / "config.resolved.json", config_to_json(config))
+    establish_run_identity(
+        output_dir=output_dir,
+        run_identity=args.run_identity,
+        reuse_existing=args.reuse_existing,
+        config_sha256=config_sha256,
+    )
+    resolved_config = config_to_json(config)
+    resolved_config["run_identity"] = args.run_identity
+    resolved_config["config_sha256"] = config_sha256
+    write_json(output_dir / "config.resolved.json", resolved_config)
 
     split_results = []
     for split in sorted(selected_splits):
@@ -91,7 +125,7 @@ def main(argv: list[str] | None = None) -> int:
         for repeat_index in range(1, config.repeats + 1):
             repeat_dir = output_dir / "splits" / split / f"repeat-{repeat_index:02d}"
             if args.reuse_existing and (repeat_dir / "result.json").exists():
-                result = json.loads((repeat_dir / "result.json").read_text())
+                result = load_json_object(repeat_dir / "result.json")
             else:
                 result = run_repeat(
                     config=config,
@@ -103,7 +137,12 @@ def main(argv: list[str] | None = None) -> int:
                 )
             split_results.append(result)
 
-    aggregate = aggregate_results(config=config, split_results=split_results)
+    aggregate = aggregate_results(
+        config=config,
+        split_results=split_results,
+        run_identity=args.run_identity,
+        config_sha256=config_sha256,
+    )
     write_json(output_dir / "result.json", aggregate)
     print(
         f"wrote {output_dir / 'result.json'} "
@@ -160,6 +199,11 @@ def load_config(
     timeout_raw = eval_config.get("timeout_s")
     timeout_s = float(timeout_raw) if timeout_raw is not None else None
 
+    multiplier_raw = eval_config.get("agent_timeout_multiplier")
+    agent_timeout_multiplier = float(multiplier_raw) if multiplier_raw is not None else None
+    if agent_timeout_multiplier is not None and agent_timeout_multiplier <= 0:
+        raise ValueError("[eval].agent_timeout_multiplier must be > 0")
+
     runner = str(eval_config.get("runner", "pytest"))
     if runner not in {"pytest", "harbor_cli"}:
         raise ValueError("[eval].runner must be 'pytest' or 'harbor_cli'")
@@ -188,6 +232,7 @@ def load_config(
         pytest_args=tuple(str(item) for item in eval_config.get("pytest_args", ["-q"])),
         case_concurrency=case_concurrency,
         timeout_s=timeout_s,
+        agent_timeout_multiplier=agent_timeout_multiplier,
         env=env_config,
         cases=cases,
     )
@@ -209,6 +254,56 @@ def import_toml_reader() -> Any:
             ) from exc
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def establish_run_identity(
+    *,
+    output_dir: Path,
+    run_identity: str | None,
+    reuse_existing: bool,
+    config_sha256: str | None = None,
+) -> None:
+    """绑定输出目录与冻结实验身份，阻止无法证明同源的 checkpoint 复用。"""
+    marker_path = output_dir / "run.identity.json"
+    if marker_path.exists():
+        marker = load_json_object(marker_path)
+        recorded = marker.get("run_identity")
+        recorded_config = marker.get("config_sha256")
+        if recorded != run_identity or recorded_config != config_sha256:
+            raise RuntimeError(
+                "run identity mismatch; refusing to mix or reuse experiment outputs: "
+                f"recorded={recorded!r}, requested={run_identity!r}, "
+                f"recorded_config={recorded_config!r}, requested_config={config_sha256!r}"
+            )
+        return
+
+    existing_checkpoints = [
+        path
+        for path in output_dir.rglob("result.json")
+        if "rerun_history" not in path.parts
+    ]
+    if reuse_existing and run_identity is not None and existing_checkpoints:
+        raise RuntimeError(
+            "cannot reuse checkpoints without a run identity marker; start from a clean output "
+            "directory or restore the original run.identity.json"
+        )
+    if run_identity is not None:
+        write_json(
+            marker_path,
+            {
+                "format": "self_harness.run_identity.v2",
+                "run_identity": run_identity,
+                "config_sha256": config_sha256,
+            },
+        )
+
+
 def run_repeat(
     *,
     config: Config,
@@ -220,14 +315,23 @@ def run_repeat(
 ) -> dict[str, Any]:
     repeat_dir.mkdir(parents=True, exist_ok=True)
     started_at = time.time()
+    if not cases:
+        raise ValueError(f"split {split!r} has no cases")
     max_workers = min(config.case_concurrency, len(cases))
     outcomes = []
     pending_cases = []
     for index, case in enumerate(cases):
         rendered = expand_env(case.render(model=config.model))
-        checkpoint = repeat_dir / "cases" / safe_slug(rendered) / "result.json"
+        checkpoint = case_directory(repeat_dir, rendered) / "result.json"
         if reuse_existing and checkpoint.exists():
-            outcomes.append(json.loads(checkpoint.read_text(encoding="utf-8")))
+            outcomes.append(
+                validate_case_checkpoint(
+                    load_json_object(checkpoint),
+                    case_id=rendered,
+                    split=split,
+                    repeat=repeat_index,
+                )
+            )
         else:
             pending_cases.append((index, case))
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -283,7 +387,7 @@ def run_case(
         )
 
     rendered = expand_env(case.render(model=config.model))
-    case_dir = repeat_dir / "cases" / safe_slug(rendered)
+    case_dir = case_directory(repeat_dir, rendered)
     case_dir.mkdir(parents=True, exist_ok=True)
     summary_path = case_dir / "summary.json"
     junit_path = case_dir / "junit.xml"
@@ -342,6 +446,7 @@ def run_case(
     outcome = {
         "index": case_index,
         "case_id": rendered,
+        "case_id_sha256": hashlib.sha256(rendered.encode("utf-8")).hexdigest(),
         "split": split,
         "stratum": case.stratum,
         "repeat": repeat_index,
@@ -375,7 +480,7 @@ def run_harbor_case(
     if not (task_path / "task.toml").is_file():
         raise FileNotFoundError(f"Harbor task not found: {task_path}")
 
-    case_dir = repeat_dir / "cases" / safe_slug(rendered)
+    case_dir = case_directory(repeat_dir, rendered)
     jobs_dir = case_dir / "harbor"
     case_dir.mkdir(parents=True, exist_ok=True)
     harbor_executable = shutil.which("harbor", path=str(Path(sys.executable).parent))
@@ -387,7 +492,8 @@ def run_harbor_case(
     attempt_records = []
     final = None
     for attempt_index in range(1, config.infrastructure_retries + 2):
-        job_name = "trial" if attempt_index == 1 else f"retry-{attempt_index:02d}"
+        preferred_job_name = "trial" if attempt_index == 1 else f"retry-{attempt_index:02d}"
+        job_name = available_harbor_job_name(jobs_dir, preferred_job_name)
         command = build_harbor_command(
             harbor_executable=harbor_executable,
             task_path=task_path,
@@ -462,6 +568,7 @@ def run_harbor_case(
     outcome = {
         "index": case_index,
         "case_id": rendered,
+        "case_id_sha256": hashlib.sha256(rendered.encode("utf-8")).hexdigest(),
         "split": split,
         "stratum": case.stratum,
         "repeat": repeat_index,
@@ -479,6 +586,15 @@ def run_harbor_case(
         outcome["messages_path"] = trace_metadata["messages_path"]
         outcome["trace_metadata"] = trace_metadata
     return outcome
+
+
+def available_harbor_job_name(jobs_dir: Path, preferred: str) -> str:
+    if not (jobs_dir / preferred).exists():
+        return preferred
+    suffix = 2
+    while (jobs_dir / f"{preferred}-resume-{suffix:02d}").exists():
+        suffix += 1
+    return f"{preferred}-resume-{suffix:02d}"
 
 
 def build_harbor_command(
@@ -513,6 +629,8 @@ def build_harbor_command(
     ]
     for item in config.agent_kwargs:
         command.extend(["--agent-kwarg", item])
+    if config.agent_timeout_multiplier is not None:
+        command.extend(["--agent-timeout-multiplier", str(config.agent_timeout_multiplier)])
     return command
 
 
@@ -581,11 +699,22 @@ def detect_verifier_infrastructure_error(
     reward: Any,
     exception_info: Any = None,
 ) -> str | None:
-    if trial_result_path is None or reward != 0:
+    if isinstance(exception_info, dict):
+        exception_type = str(exception_info.get("exception_type") or "unknown exception")
+        message = str(exception_info.get("exception_message") or exception_type)
+        if exception_type == "RuntimeError" and "Docker compose command failed" in message:
+            return "docker compose command failed"
+        if exception_type == "AgentTimeoutError":
+            return f"agent timeout: {message}"
+        return f"harbor exception: {exception_type}: {message}"
+    if trial_result_path is None:
+        return "harbor did not produce a trial result"
+    if reward is None:
+        return "harbor trial has no verifier reward"
+    if isinstance(reward, bool) or not isinstance(reward, (int, float)):
+        return f"harbor trial has non-numeric verifier reward: {reward!r}"
+    if reward > 0:
         return None
-    if isinstance(exception_info, dict) and exception_info.get("exception_type") == "AgentTimeoutError":
-        message = str(exception_info.get("exception_message") or "agent execution timed out")
-        return f"agent timeout: {message}"
     invoke_state = read_json_if_exists(trial_result_path.parent / "agent" / "invoke_state.json")
     if isinstance(invoke_state, dict) and invoke_state.get("phase") == "ainvoke_timeout":
         timeout = invoke_state.get("invoke_timeout_sec")
@@ -657,7 +786,7 @@ def read_json_if_exists(path: Path) -> Any:
     if not path.exists():
         return None
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return load_json_object(path)
     except json.JSONDecodeError:
         return None
 
@@ -766,7 +895,13 @@ def local_existing_path(value: Any) -> Path | None:
         return None
 
 
-def aggregate_results(*, config: Config, split_results: list[dict[str, Any]]) -> dict[str, Any]:
+def aggregate_results(
+    *,
+    config: Config,
+    split_results: list[dict[str, Any]],
+    run_identity: str | None = None,
+    config_sha256: str | None = None,
+) -> dict[str, Any]:
     passed = sum(int(item["passed"]) for item in split_results)
     total = sum(int(item["total"]) for item in split_results)
     by_split: dict[str, list[dict[str, Any]]] = {}
@@ -775,6 +910,8 @@ def aggregate_results(*, config: Config, split_results: list[dict[str, Any]]) ->
     return {
         "name": config.name,
         "model": config.model,
+        "run_identity": run_identity,
+        "config_sha256": config_sha256,
         "repeats": config.repeats,
         "passed": passed,
         "total": total,
@@ -801,6 +938,7 @@ def config_to_json(config: Config) -> dict[str, Any]:
         "pytest_args": list(config.pytest_args),
         "case_concurrency": config.case_concurrency,
         "timeout_s": config.timeout_s,
+        "agent_timeout_multiplier": config.agent_timeout_multiplier,
         "env": config.env,
         "cases": [case.__dict__ for case in config.cases],
     }
@@ -824,7 +962,29 @@ def expand_env(value: str) -> str:
 
 
 def safe_slug(value: str) -> str:
-    return re.sub(r"[^A-Za-z0-9_.-]+", "_", value).strip("_")[:180] or "case"
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", value).strip("_")[:160] or "case"
+
+
+def case_directory(repeat_dir: Path, case_id: str) -> Path:
+    """Return a collision-resistant, human-readable directory for one case."""
+    digest = hashlib.sha256(case_id.encode("utf-8")).hexdigest()[:12]
+    return repeat_dir / "cases" / f"{safe_slug(case_id)}--{digest}"
+
+
+def validate_case_checkpoint(payload: dict[str, Any], *, case_id: str, split: str, repeat: int) -> dict[str, Any]:
+    expected_hash = hashlib.sha256(case_id.encode("utf-8")).hexdigest()
+    if (
+        payload.get("case_id") != case_id
+        or payload.get("case_id_sha256") != expected_hash
+        or payload.get("split") != split
+        or payload.get("repeat") != repeat
+    ):
+        raise ValueError(
+            f"checkpoint identity mismatch for {case_id!r}: "
+            f"expected split={split!r}, repeat={repeat}, got "
+            f"case_id={payload.get('case_id')!r}, split={payload.get('split')!r}, repeat={payload.get('repeat')!r}"
+        )
+    return payload
 
 
 def normalize_output(value: str | bytes | None) -> str:
