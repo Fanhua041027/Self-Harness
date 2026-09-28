@@ -125,7 +125,14 @@ def main(argv: list[str] | None = None) -> int:
         for repeat_index in range(1, config.repeats + 1):
             repeat_dir = output_dir / "splits" / split / f"repeat-{repeat_index:02d}"
             if args.reuse_existing and (repeat_dir / "result.json").exists():
-                result = load_json_object(repeat_dir / "result.json")
+                result = validate_repeat_result(
+                    load_json_object(repeat_dir / "result.json"),
+                    config=config,
+                    split=split,
+                    cases=cases,
+                    repeat_index=repeat_index,
+                    repeat_dir=repeat_dir,
+                )
             else:
                 result = run_repeat(
                     config=config,
@@ -969,6 +976,66 @@ def case_directory(repeat_dir: Path, case_id: str) -> Path:
     """Return a collision-resistant, human-readable directory for one case."""
     digest = hashlib.sha256(case_id.encode("utf-8")).hexdigest()[:12]
     return repeat_dir / "cases" / f"{safe_slug(case_id)}--{digest}"
+
+
+def validate_repeat_result(
+    payload: dict[str, Any],
+    *,
+    config: Config,
+    split: str,
+    cases: tuple[Case, ...],
+    repeat_index: int,
+    repeat_dir: Path | None = None,
+) -> dict[str, Any]:
+    """Validate a repeat aggregate before it can be reused or aggregated."""
+    if payload.get("split") != split or type(payload.get("repeat")) is not int or payload.get("repeat") != repeat_index:
+        raise ValueError(
+            f"repeat result identity mismatch: expected split={split!r}, repeat={repeat_index}"
+        )
+    if payload.get("model") != config.model:
+        raise ValueError(
+            f"repeat result model mismatch: expected {config.model!r}, got {payload.get('model')!r}"
+        )
+    case_results = payload.get("case_results")
+    if not isinstance(case_results, list) or len(case_results) != len(cases):
+        raise ValueError(
+            f"repeat result case count mismatch: expected {len(cases)}, got "
+            f"{len(case_results) if isinstance(case_results, list) else case_results!r}"
+        )
+    expected_ids = [expand_env(case.render(model=config.model)) for case in cases]
+    expected_by_id = {case_id: case for case_id in expected_ids}
+    if len(expected_by_id) != len(expected_ids):
+        raise ValueError(f"duplicate case ids configured for split {split!r}")
+    seen: set[str] = set()
+    for outcome in case_results:
+        if not isinstance(outcome, dict):
+            raise ValueError("repeat result contains a non-object case result")
+        case_id = outcome.get("case_id")
+        if case_id not in expected_by_id or case_id in seen:
+            raise ValueError(f"repeat result case identity mismatch: {case_id!r}")
+        seen.add(case_id)
+        if outcome.get("split") != split or type(outcome.get("repeat")) is not int or outcome.get("repeat") != repeat_index:
+            raise ValueError(f"repeat result case metadata mismatch for {case_id!r}")
+        if repeat_dir is not None:
+            checkpoint = case_directory(repeat_dir, case_id) / "result.json"
+            if not checkpoint.is_file():
+                raise ValueError(f"missing case checkpoint for reused result: {case_id!r}")
+            validate_case_checkpoint(
+                load_json_object(checkpoint),
+                case_id=case_id,
+                split=split,
+                repeat=repeat_index,
+            )
+    if seen != set(expected_ids):
+        raise ValueError(f"repeat result case ids do not match configured cases for split {split!r}")
+    total = payload.get("total")
+    passed = payload.get("passed")
+    if type(total) is not int or type(passed) is not int or total != len(case_results):
+        raise ValueError("repeat result aggregate counts are inconsistent")
+    calculated_passed = sum(outcome.get("passed") is True for outcome in case_results)
+    if passed != calculated_passed or passed < 0 or passed > total:
+        raise ValueError("repeat result aggregate passed count is inconsistent")
+    return payload
 
 
 def validate_case_checkpoint(payload: dict[str, Any], *, case_id: str, split: str, repeat: int) -> dict[str, Any]:

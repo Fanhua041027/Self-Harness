@@ -62,6 +62,8 @@ def case_checkpoint_path(repeat_dir: Path, case_id: str) -> Path:
     return repeat_dir / "cases" / case_id / "result.json"
 
 
+def candidate_harness_path(candidate_workspace: Path) -> Path:
+    """Return the materialized candidate surface accepted by the Harbor wrapper."""
     for relative in (Path("repo_baseline.py"), Path("current") / "repo_baseline.py"):
         path = candidate_workspace / relative
         if path.is_file():

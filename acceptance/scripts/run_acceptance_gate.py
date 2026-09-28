@@ -326,14 +326,16 @@ def repeat_metric(raw: Any, *, split: str, expected_repeats: int = DEFAULT_EXPEC
     if not isinstance(case_results, list):
         raise ValueError(f"split {split!r} repeat entry must contain case_results")
     raw_repeat = raw.get("repeat")
-    if isinstance(raw_repeat, bool):
-        raise ValueError(f"split {split!r} repeat entry must include an integer repeat")
-    try:
-        repeat = int(raw_repeat)
-    except (KeyError, TypeError, ValueError) as exc:
-        raise ValueError(f"split {split!r} repeat entry must include an integer repeat") from exc
+    if type(raw_repeat) is not int:
+        raise ValueError(
+            f"split {split!r} repeat entry must include an integer repeat; repeat ids must be JSON integers"
+        )
+    repeat = raw_repeat
     if repeat not in range(1, expected_repeats + 1):
-        raise ValueError(f"split {split!r} repeat id {repeat} is outside the expected range")
+        raise ValueError(
+            f"split {split!r} must contain repeat ids {list(range(1, expected_repeats + 1))}; "
+            f"repeat id {repeat} is outside the expected range"
+        )
     if raw.get("split", split) != split:
         raise ValueError(f"split {split!r} repeat {repeat} has mismatched split metadata")
     case_ids = []
@@ -342,10 +344,9 @@ def repeat_metric(raw: Any, *, split: str, expected_repeats: int = DEFAULT_EXPEC
             raise ValueError(f"split {split!r} repeat {repeat} has an invalid case_id")
         if item.get("split", split) != split:
             raise ValueError(f"split {split!r} repeat {repeat} has mismatched split metadata")
-        try:
-            item_repeat = int(item.get("repeat", repeat))
-        except (TypeError, ValueError) as exc:
-            raise ValueError(f"split {split!r} repeat {repeat} has invalid case repeat metadata") from exc
+        item_repeat = item.get("repeat", repeat)
+        if type(item_repeat) is not int:
+            raise ValueError(f"split {split!r} repeat {repeat} has invalid case repeat metadata")
         if item_repeat != repeat:
             raise ValueError(f"split {split!r} repeat {repeat} has mismatched case metadata")
         case_ids.append(item["case_id"])
@@ -363,14 +364,13 @@ def repeat_metric(raw: Any, *, split: str, expected_repeats: int = DEFAULT_EXPEC
     aggregate_error = repeat_aggregate_consistency_error(raw)
     if aggregate_error is not None:
         raise ValueError(f"split {split!r} repeat aggregate mismatch: {aggregate_error}")
-    try:
-        passed_raw, total_raw = raw["passed"], raw["total"]
-        if isinstance(passed_raw, bool) or isinstance(total_raw, bool):
-            raise TypeError
-        passed = int(passed_raw)
-        total = int(total_raw)
-    except (KeyError, TypeError, ValueError) as exc:
-        raise ValueError(f"split {split!r} repeat entry must include integer passed/total") from exc
+    passed_raw, total_raw = raw.get("passed"), raw.get("total")
+    if type(passed_raw) is not int or type(total_raw) is not int:
+        raise ValueError(
+            f"split {split!r} repeat entry must include integer passed/total"
+        )
+    passed = passed_raw
+    total = total_raw
     if total <= 0:
         raise ValueError(f"split {split!r} repeat {repeat} has non-positive total")
     if passed < 0 or passed > total:
